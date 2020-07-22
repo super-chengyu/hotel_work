@@ -1,1 +1,38 @@
+# \u57FA\u7840\u914D\u7F6E
+server:
+  port: 8080
+  servlet:
+    jsp:
+      init-parameters:
+        development: true
+    context-path: /
+
+# \u6570\u636E\u6E90\u914D\u7F6E
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/hotel_work?characterEncoding=UTF-8&useOldAliasMetadataBehavior=true&useSSL=false
+  mvc:
+    view:
+      prefix: /WEB-INF/page/
+      suffix: .jsp
+    static-path-pattern: /static/**
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+# mybatis-plus\u914D\u7F6E
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: mapper/*.xml
+  type-aliases-package: com.dj.hotel.pojo
+
+logging:
+  level:
+    com.dj.mp.mapper: debug
+
 
