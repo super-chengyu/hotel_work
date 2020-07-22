@@ -1,5 +1,8 @@
 package com.dj.hotel.common;
 
+/**
+ * @author 杨承雨
+ */
 public class ResultModel<T> {
 
 	private Integer code = 200;
