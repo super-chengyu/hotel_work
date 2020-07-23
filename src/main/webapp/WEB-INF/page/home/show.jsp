@@ -6,75 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/res/layui-v2.5.6/layui/css/layui.css"  media="all">
-<script type="text/javascript" src = "<%=request.getContextPath()%>/res/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src = "<%=request.getContextPath()%>/res/layer-v3.1.1/layer/layer.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/static/layer/layui-v2.5.6/layui/css/layui.css"  media="all">
+<script type="text/javascript" src = "<%=request.getContextPath()%>/static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src = "<%=request.getContextPath()%>/static/layer/layer-v3.1.1/layer/layer.js"></script>
 
 
 
 <script type="text/javascript">
 	var level = ${user.userLevel}
 	
-	
-	
 	$(function(){
 		search(1);
 	})
-	
 
-	
-	
-  	//填写
-	function wirte(){
-		layer.open({
-			  type: 2,
-			  title: '填写报销单',
-			  shadeClose: false,
-			  shade: 0.3,
-			  area: ['380px', '90%'],
-			  content: '<%=request.getContextPath()%>/exp/toAdd?token=${token}' //iframe的url
-			}); 	
-	}
-	
-	//审批
-	function upda(id){
-		layer.open({
-			  type: 2,
-			  title: '审核报销单',
-			  shadeClose: true,
-			  shade: 0.3,
-			  area: ['380px', '90%'],
-			  content: '<%=request.getContextPath()%>/exp/toUpdate/?id='+id+'&token=${token}' //iframe的url
-			}); 
-	}
-	
-	//支付
-	function upda(id){
-		layer.open({
-			  type: 2,
-			  title: '支付报销单',
-			  shadeClose: true,
-			  shade: 0.3,
-			  area: ['380px', '90%'],
-			  content: '<%=request.getContextPath()%>/exp/toUpdate/?id='+id+'&token=${token}' //iframe的url
-			}); 
-	}
-	
-	//置顶
-	function toTop(isTop, id){
-		var index = layer.load(1,{shade:0.3});
-		$.post("<%=request.getContextPath()%>/exp/updateTop",
-				{"isTop":isTop , "id":id , "token":'${token}'},
-				function (data){
-					layer.close(index);
-					if (data.code == 200){
-						layer.msg(data.msg, {icon: 6}); 
-						window.location.href = "<%=request.getContextPath()%>/exp/toShow?token=${token}"
-						return;
-					}
-		})
-	}
-	
 	function search(pageNo){
 		$.post("<%=request.getContextPath()%>/home/showHome",
 				$("#fm").serialize(),
@@ -85,11 +29,11 @@
 					var home = data.data.homeList[i];
 					html+="<tr>"
 					html+="<td>"+home.homeName+"</td>"
-					html+="<td>"+home.homwStatus+"</td>"
+					html+="<td>"+home.homeStatus+"</td>"
 					html+="</tr>"
 				}
-				pageInfo += "<input type = 'button' value = '上一页' onclick = 'page(0, "+data.data.pages+")'/>";
-				pageInfo += "<input type = 'button' value = '下一页' onclick = 'page(1, "+data.data.pages+")'/>";				$("#pageInfo").html(pageInfo);
+				pageInfo += "<button type='button' class='layui-btn' onclick = 'page(0, "+data.data.pages+")'><i class='layui-icon'></i></button>";
+				pageInfo += "<button type='button' class='layui-btn' onclick = 'page(1, "+data.data.pages+")'><i class='layui-icon'></i></button>";
 				$("#tbd").html(html);
 				$("#pageInfo").html(pageInfo);
 		})
@@ -133,9 +77,16 @@
 
 </head>
 <body>
-	<fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
-  		<legend>报销数据表</legend>
-	</fieldset>
+	<c:if test="${user.userLevel == 2}">
+		<fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+  			<legend>选择座位</legend>
+		</fieldset>
+	</c:if>
+	<c:if test="${user.userLevel == 3}">
+		<fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+			<legend>选择包间或座位</legend>
+		</fieldset>
+	</c:if>
 	<div id = "wirte">
 		<button class="layui-btn layui-btn-normal" type="button" onclick = "wirte()">填写报销单</button>
 	</div><br/>
