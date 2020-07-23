@@ -17,7 +17,7 @@ public class Menu {
     private Integer id;
 
     /** 菜名 */
-    private Integer menuName;
+    private String menuName;
 
     /** 菜品价格 */
     private Double menuPrice;
