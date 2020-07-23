@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dj.hotel.mapper.MenuMapper">
+
+    <sql id="MenuColumn">
+		id,
+        menu_name,
+        menu_price,
+        menu_note,
+        menu_status,
+        is_del
+	</sql>
+
+    <!-- menu的id -->
+    <select id="findMenuByMid" resultType="com.dj.hotel.pojo.Menu">
+        select
+            <include refid="MenuColumn"/>
+        from
+            menu
+        where
+            id = #{mId}
+    </select>
+</mapper>

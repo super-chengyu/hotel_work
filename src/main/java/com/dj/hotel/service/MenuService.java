@@ -8,4 +8,6 @@ import com.dj.hotel.pojo.Menu;
  * @author 成素鑫
  */
 public interface MenuService extends IService<Menu> {
+
+    Menu findMenuByMid(Integer mId) throws Exception;
 }

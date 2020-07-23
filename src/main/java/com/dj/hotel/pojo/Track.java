@@ -28,5 +28,8 @@ public class Track {
     /** 菜品表(menu)的价格 */
     private Double menuPrice;
 
+    /** 菜品表(menu)的备注 */
+    private String menuConfirm;
+
 
 }

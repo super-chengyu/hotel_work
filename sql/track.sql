@@ -31,3 +31,5 @@ CREATE TABLE `track` (
 -- ----------------------------
 -- Records of track
 -- ----------------------------
+ALTER TABLE `track`
+ADD COLUMN `menu_confirm`  varchar(255) NULL COMMENT '备注' AFTER `menu_price`;

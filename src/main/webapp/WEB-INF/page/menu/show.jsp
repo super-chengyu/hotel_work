@@ -26,11 +26,16 @@
 				var html = "";
 				var pageInfo = "";
 				for(var i=0; i<data.data.menuList.length; i++){
-					var home = data.data.menuList[i];
+					var menu = data.data.menuList[i];
 					html+="<tr>"
-					html+="<td>"+home.menuName+"</td>"
-					html+="<td>"+home.menuPrice+"</td>"
-	                html+="<td>"+home.menuNote+"</td>"
+					html+="<td>"+menu.menuName+"</td>"
+					html+="<td>"+menu.menuPrice+"</td>"
+	                html+="<td>"+menu.menuNote+"</td>"
+					html+="<td>"
+					if(level == 2){
+						html+="<button class='layui-btn layui-btn-normal' type='button' onclick = 'toAdd("+menu.id+")'>点菜</button>"
+					}
+					html+="</td>"
 					html+="</tr>"
 				}
 				pageInfo += "<button type='button' class='layui-btn' onclick = 'page(0, "+data.data.pages+")'><i class='layui-icon'></i></button>";
@@ -39,7 +44,18 @@
 				$("#pageInfo").html(pageInfo);
 		})
 	}
-	
+
+	function toAdd(mId){
+		layer.open({
+		type: 2,
+		title: '点餐',
+		shadeClose: true,
+		shade: 0.8,
+		area: ['380px', '90%'],
+		content: '<%=request.getContextPath()%>/track/toAddMenu?mId='+mId, //iframe的url
+		});
+	}
+
 	//分页
 	function page(status, pages){
 		var index = layer.load(1,{shade:0.3});

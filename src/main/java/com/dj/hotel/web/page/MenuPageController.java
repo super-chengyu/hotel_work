@@ -1,8 +1,10 @@
 package com.dj.hotel.web.page;
 
+import com.dj.hotel.pojo.Menu;
 import com.dj.hotel.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -12,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/menu/")
 public class MenuPageController {
+
+    @Autowired
+    private MenuService menuService;
 
     /**
      * 去菜品展示
