@@ -25,6 +25,17 @@ public class HomeController {
     @Autowired
     private HomeService homeService;
 
+    /**
+     *
+     * @Title: showHome
+     * @Description: 座位或包间的展示
+     * @Date: 2020年7月23日
+     * @author: ycy
+     * @param: @param home, pageNo
+     * @param: @return
+     * @return: map
+     * @throws
+     */
     @RequestMapping("showHome")
     public ResultModel<Object> showHome(Home home, Integer pageNo){
         Map<String, Object> map = new HashMap<>();
