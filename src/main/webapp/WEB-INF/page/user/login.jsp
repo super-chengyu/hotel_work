@@ -43,6 +43,17 @@ show.jsp<%@ page language="java" contentType="text/html; charset=UTF-8"
 		   window.top.location = document.URL;
 		   layer.msg("失效，即将返回登录页面", {icon: 5});
 		 }
+
+	function register(){
+		layer.open({
+			type: 2,
+			title: '注册用户',
+			shadeClose: false,
+			shade: 0.3,
+			area: ['380px', '90%'],
+			content: '<%=request.getContextPath()%>/user/toRegisterUser' //iframe的url
+		});
+	}
 </script>
 </head>
 <body>
@@ -53,7 +64,7 @@ show.jsp<%@ page language="java" contentType="text/html; charset=UTF-8"
 				<input type="text" placeholder="用户名" id="entry_name" name="userName">
 				<input type="password" placeholder="密码" id="entry_password" name="userPwd">
 				<input type="button" value = "登录" onclick = "login()"/>
-				<input type = "button" value = "没有账号？？点我注册"/>
+				<input type = "button" value = "没有账号？？点我注册" onclick="register()"/>
 				<input type = "button" value = "忘记密码？？点我找回"/>
 			</form>
 			</div>
