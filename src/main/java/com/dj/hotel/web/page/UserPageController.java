@@ -20,4 +20,13 @@ public class UserPageController {
     public String toLogin(){
         return "user/login";
     }
+
+    /**
+     * 用户去注册
+     * @return
+     */
+    @RequestMapping("toRegisterUser")
+    public String toRegisterUser(){
+        return "user/register";
+    }
 }
