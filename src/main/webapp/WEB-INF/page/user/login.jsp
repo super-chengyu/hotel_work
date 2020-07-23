@@ -17,7 +17,7 @@
 	
 	function login(){
 		var index = layer.load(1,{shade:0.3});
-		$.post("<%=request.getContextPath()%>/user/login",
+		$.post("<%=request.getContextPath()%>/user/loginByNameAndPwd",
 				$("#fm").serialize(),
 				function(data){
 					layer.close(index);
