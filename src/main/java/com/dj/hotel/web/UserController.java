@@ -54,4 +54,50 @@ public class UserController {
             return new ResultModel<>().error(e.getMessage());
         }
     }
+
+    /**
+     *
+     * @Title: registerUser
+     * @Description: 用户注册
+     * @Date: 2020年7月23日
+     * @author: hhq
+     * @param: @param user
+     * @param: @return
+     * @return:
+     * @throws
+     */
+    @RequestMapping("registerUser")
+    public ResultModel<Object> registerUser(User user){
+        try {
+            userService.save(user);
+            return new ResultModel<>().success("注册成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultModel<>().error(e.getMessage());
+        }
+    }
+
+    /**
+     *
+     * @Title: getPhone
+     * @Description: 邮箱去重
+     * @Date: 2020年7月23日
+     * @author: hhq
+     * @param: @param user
+     * @param: @return
+     * @return:
+     * @throws
+     */
+    @RequestMapping("getEmail")
+    public boolean getEmail(String  userEmail){
+        try {
+            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("user_email", userEmail);
+            User user2 = userService.getOne(queryWrapper);
+            return user2 == null ? true : false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
