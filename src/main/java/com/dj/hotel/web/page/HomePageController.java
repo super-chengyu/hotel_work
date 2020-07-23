@@ -16,4 +16,9 @@ public class HomePageController {
     @Autowired
     private HomeService homeService;
 
+    @RequestMapping("toShow")
+    public String toShow(){
+        return "home/show";
+    }
+
 }
