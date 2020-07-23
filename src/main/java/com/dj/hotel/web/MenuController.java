@@ -31,10 +31,10 @@ public class MenuController {
 
     /**
      *
-     * @Title: showHome
+     * @Title: showMenu
      * @Description: 座位或包间的展示
      * @Date: 2020年7月23日
-     * @author: ycy
+     * @author: csx
      * @param: @param home, pageNo
      * @param: @return
      * @return: map
