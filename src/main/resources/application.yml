@@ -33,6 +33,6 @@ mybatis-plus:
 
 logging:
   level:
-    com.dj.mp.mapper: debug
+    com.dj.hotel.mapper: debug
 
 
