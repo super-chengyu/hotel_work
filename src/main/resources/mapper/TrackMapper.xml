@@ -17,4 +17,9 @@
 			values
 		(#{recoId},#{menuId},#{menuNum},#{menuPrice},#{menuConfirm})
     </insert>
+
+    <!-- 查看自己点餐信息 -->
+    <select id="findTrackByAll" resultType="Track">
+
+    </select>
 </mapper>

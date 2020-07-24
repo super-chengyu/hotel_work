@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -31,19 +31,41 @@
 					if(level == 2){
 						html+="<button class='layui-btn layui-btn-normal' type='button' onclick = 'toAdd("+menu.id+")'>点菜</button>"
 					}
+					if(level == 4){
+						if(menu.menuStatus == 1){
+							html+="<td><button class='layui-btn layui-btn-normal' type='button' onclick = 'up("+menu.id+")'>上架</td>"
+						}
+						if(menu.menuStatus == 0){
+							html+="<td><button class='layui-btn layui-btn-normal' type='button' onclick = 'low("+menu.id+")'>下架</td>"
+						}
+					}
+					if(level == 5){
+						html+="<button class='layui-btn layui-btn-normal' type='button' onclick = 'upda("+menu.id+")'>修改菜品</button>"
+					}
 					html+="</td>"
 					html+="</tr>"
 				}
-					html+="<td>"
-					if(level == 5){
+				html+="<td>"
+				if(level == 5){
 					html+="<button class='layui-btn layui-btn-normal' type='button' onclick = 'add()'>上架菜品</button>"
-					}
-					html+="</td>"
+				}
+				html+="</td>"
 				pageInfo += "<button type='button' class='layui-btn' onclick = 'page(0, "+data.data.pages+")'><i class='layui-icon'></i></button>";
 				pageInfo += "<button type='button' class='layui-btn' onclick = 'page(1, "+data.data.pages+")'><i class='layui-icon'></i></button>";
 				$("#tbd").html(html);
 				$("#pageInfo").html(pageInfo);
 		})
+	}
+
+	function upda(id){
+		layer.open({
+		type: 2,
+		title: '修改菜品',
+		shadeClose: true,
+		shade: 0.8,
+		area: ['380px', '90%'],
+		content: '<%=request.getContextPath()%>/menu/toUpdateMenu/'+id, //iframe的url
+		});
 	}
 
 	function lo(mId){
@@ -55,6 +77,19 @@
 		area: ['380px', '40%'],
 		content: '<%=request.getContextPath()%>/menu/toMenuList?mId='+mId, //iframe的url
 		});
+	}
+
+	function up(id) {
+		var index = layer.load(1, {shade: 0.3})
+		$.post("<%=request.getContextPath()%>/menu/upMenu",
+			{"id": id, "menuStatus": 0},
+			function(data){
+			if(data.code != 200){
+				layer.msg(data.msg, {icon: 5});
+				layer.close(index);
+				return;
+			}
+	})
 	}
 
 	function add(){

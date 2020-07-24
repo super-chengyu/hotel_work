@@ -19,4 +19,5 @@ public interface MenuService extends IService<Menu> {
      * @throws
      */
     Menu findMenuByMid(Integer mId) throws Exception;
+
 }

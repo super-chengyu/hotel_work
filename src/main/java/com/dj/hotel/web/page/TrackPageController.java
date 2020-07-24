@@ -1,12 +1,14 @@
 package com.dj.hotel.web.page;
 
 import com.dj.hotel.pojo.Menu;
+import com.dj.hotel.pojo.User;
 import com.dj.hotel.service.MenuService;
 import com.dj.hotel.service.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 /**
  * 记录页面控制层
@@ -36,6 +38,20 @@ public class TrackPageController {
         Menu menu = menuService.findMenuByMid(mId);
         model.addAttribute("menu", menu);
         return "track/insert";
+    }
+
+    /**
+     *
+     * @Title: toShow
+     * @Description: 去查看自己的点餐记录展示
+     * @Date: 2020年7月24日
+     * @author: hhq
+     * @param: @return
+     * @throws
+     */
+    @RequestMapping("toShow")
+    public String toShow() {
+        return "track/show";
     }
 
 }

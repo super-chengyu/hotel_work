@@ -31,9 +31,9 @@ public class MenuController {
     /**
      *
      * @Title: show
-     * @Description: 菜品展示
+     * @Description: 菜品展示(查询)
      * @Date: 2020年7月23日
-     * @author: csx
+     * @author: csx （hhq）
      * @param: @param menu, pageNo
      * @param: @return
      * @return: map
@@ -112,4 +112,48 @@ public class MenuController {
         }
     }
 
+    /**
+     *
+     * @Title: upMenu
+     * @Description: 上架菜品
+     * @Date: 2020年7月24日
+     * @author: hhq
+     * @param: @param user
+     * @param: @return
+     * @return:
+     * @throws
+     */
+    @RequestMapping("upMenu")
+    public ResultModel<Object> upMenu(Menu menu){
+        try {
+            menu.setMenuStatus(0);
+            menuService.updateById(menu);
+            return new ResultModel<>().success("上架成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultModel<>().error("服务器异常");
+        }
+    }
+
+    /**
+     *
+     * @Title: updateMenu
+     * @Description: 修改菜品
+     * @Date: 2020年7月24日
+     * @author: hhq
+     * @param: @param user
+     * @param: @return
+     * @return:
+     * @throws
+     */
+    @RequestMapping("updateMenu")
+    public ResultModel<Object> updateMenu(Menu menu){
+        try {
+            menuService.updateById(menu);
+            return new ResultModel<>().success("修改成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultModel<>().error("服务器异常");
+        }
+    }
 }

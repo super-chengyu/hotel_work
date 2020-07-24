@@ -6,6 +6,7 @@ import com.dj.hotel.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -53,6 +54,19 @@ public class MenuPageController {
     @RequestMapping("toAddMenu")
     public String toAddMenus(){
         return "menu/add";
+    }
+
+    /**
+     * 菜品去修改
+     * @Date: 2020年7月24日
+     * @author: hhq
+     * @return
+     */
+    @RequestMapping("toUpdateMenu/{id}")
+    public String toUpdateMenu(@PathVariable("id") Integer id, Model model){
+        Menu menu1 = menuService.getById(id);
+        model.addAttribute("menu",menu1);
+        return "menu/update";
     }
 
 }

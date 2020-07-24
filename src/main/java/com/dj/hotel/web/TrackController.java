@@ -1,6 +1,7 @@
 package com.dj.hotel.web;
 
 import com.dj.hotel.common.ResultModel;
+import com.dj.hotel.pojo.Menu;
 import com.dj.hotel.pojo.Track;
 import com.dj.hotel.pojo.User;
 import com.dj.hotel.service.MenuService;
