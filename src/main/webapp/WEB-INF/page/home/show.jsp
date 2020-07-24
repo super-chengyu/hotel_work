@@ -85,6 +85,7 @@
 		$.post ("<%=request.getContextPath()%>/home/updateHomeStatus",
 				{id: id},
 				function (data) {
+					layer.close(index);
 					if (data.code != 200){
 						layer.msg(data.msg, {icon: 2});
 						return;

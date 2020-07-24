@@ -77,7 +77,7 @@ public class HomeController {
         try {
             Home home = new Home()
                     .setId(id)
-                    .setHomeStatus(SysConstant.HOME_PAGE_SIZE);
+                    .setHomeStatus(SysConstant.HOME_STATUS);
             homeService.updateById(home);
             Recondite recondite = new Recondite()
                     .setHomeId(id)
