@@ -10,6 +10,15 @@ import com.dj.hotel.pojo.User;
  */
 public interface TrackService extends IService<Track> {
 
+    /**
+     *
+     * @Title: addTrack
+     * @Description: 新增轨迹
+     * @Date: 2020年7月24日
+     * @author: ck
+     * @param: @return
+     * @throws
+     */
     void addTrackAndMenu(Track track) throws Exception;
 
 }
