@@ -14,6 +14,7 @@
 
 </script>	
 </head>
+
 <body style="color: red">
 <div class="header" id="demo">
 	<div class="top_logo"></div>
@@ -34,14 +35,7 @@
 	<source src="<%=request.getContextPath()%>/static/jQueryBg/css/Music.aac" type="audio/mp4">
 </audio>
 <!--音乐 END-->
-	<center>
-	<h1>欢迎${user.userName}登录芙蓉酒楼点餐系统</h1>
-	</center>
-	<div id="datetime" align="right" style="color:red">
-	<script>
- 		setInterval("document.getElementById('datetime').innerHTML=new Date().toLocaleString();", 1000);
-	</script>
-	</div>
+
 </body>
 <script>
 	//宇宙特效
