@@ -29,4 +29,15 @@ public class UserPageController {
     public String toRegisterUser(){
         return "user/register";
     }
+
+    /**
+     * 用户去展示
+     * @Date: 2020年7月24日
+     * @author: csx
+     * @return
+     */
+    @RequestMapping("toShow")
+    public String toShow(){
+        return "user/show";
+    }
 }

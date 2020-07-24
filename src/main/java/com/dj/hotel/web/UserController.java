@@ -1,15 +1,23 @@
 package com.dj.hotel.web;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dj.hotel.common.ResultModel;
+import com.dj.hotel.common.SysConstant;
+import com.dj.hotel.pojo.Menu;
 import com.dj.hotel.pojo.User;
 import com.dj.hotel.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 用户控制层
@@ -98,6 +106,34 @@ public class UserController {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    /**
+     *
+     * @Title: showMenu
+     * @Description: 菜品展示
+     * @Date: 2020年7月23日
+     * @author: csx
+     * @param: @param menu, pageNo
+     * @param: @return
+     * @return: map
+     * @throws
+     */
+    @RequestMapping("show")
+    public ResultModel<Object> showHome(User user, Integer pageNo){
+        Map<String, Object> map = new HashMap<>();
+        try {
+            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("is_del", SysConstant.IS_DEL);
+            IPage<User> page = new Page<>(pageNo, SysConstant.HOME_PAGE_SIZE);
+            IPage<User> pageInfo = userService.page(page, queryWrapper);
+            map.put("userList", pageInfo.getRecords());
+            map.put("pages", pageInfo.getPages());
+            return new ResultModel<>().success(map);
+        } catch (Exception e){
+            e.printStackTrace();
+            return new ResultModel<>().error("服务器异常");
         }
     }
 }

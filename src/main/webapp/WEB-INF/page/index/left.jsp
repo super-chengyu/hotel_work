@@ -75,6 +75,7 @@
                         </c:if>
                         <c:if test="${user.userLevel == 4}">
                             <li><a href="<%=request.getContextPath()%>/menu/toShow" target="right"><span>菜品展示</span></a></li>
+                            <li><a href="<%=request.getContextPath()%>/user/toShow" target="right"><span>用户信息</span></a></li>
                             <li><a href="<%=request.getContextPath()%>/recondite/toShow" target="right"><span>待接单</span></a></li>
                             <li><a href="<%=request.getContextPath()%>/track/toHand" target="right"><span>总营业额</span></a></li>
                         </c:if>
