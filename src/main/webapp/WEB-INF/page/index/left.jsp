@@ -81,6 +81,7 @@
                         </c:if>
                         <c:if test="${user.userLevel == 5}">
                             <li><a href="<%=request.getContextPath()%>/recondite/toShow" target="right"><span>商家准备</a></li>
+                            <li><a href="<%=request.getContextPath()%>/menu/toShow" target="right"><span>菜品信息</span></a></li>
                         </c:if>
                     </ul>
                 </div>
