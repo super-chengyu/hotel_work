@@ -6,11 +6,16 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dj.hotel.common.ResultModel;
 import com.dj.hotel.common.SysConstant;
 import com.dj.hotel.pojo.Home;
+import com.dj.hotel.pojo.Recondite;
+import com.dj.hotel.pojo.User;
 import com.dj.hotel.service.HomeService;
+import com.dj.hotel.service.ReconditeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,6 +29,9 @@ public class HomeController {
 
     @Autowired
     private HomeService homeService;
+
+    @Autowired
+    private ReconditeService reconditeService;
 
     /**
      *
@@ -65,12 +73,18 @@ public class HomeController {
      * @throws
      */
     @RequestMapping("updateHomeStatus")
-    public ResultModel<Object> updateHomeStatus(Integer id){
+    public ResultModel<Object> updateHomeStatus(Integer id, @SessionAttribute User user){
         try {
-            Home home = new Home();
-            home.setId(id);
-            home.setHomeStatus(SysConstant.HOME_STATUS);
+            Home home = new Home()
+                    .setId(id)
+                    .setHomeStatus(SysConstant.HOME_PAGE_SIZE);
             homeService.updateById(home);
+            Recondite recondite = new Recondite()
+                    .setHomeId(id)
+                    .setUserId(user.getId())
+                    .setStartTime(LocalDateTime.now())
+                    .setEatStatus(SysConstant.ARRIVED);
+            reconditeService.save(recondite);
             return new ResultModel<>().success("选择成功");
         } catch (Exception e){
             e.printStackTrace();

@@ -4,12 +4,15 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * Home房间表
+ * @author 杨承雨
  */
 @Data
 @TableName("home")
+@Accessors(chain = true)
 public class Home {
 
     /** 主键ID */
