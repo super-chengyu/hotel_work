@@ -10,8 +10,6 @@
 <script type="text/javascript" src = "<%=request.getContextPath()%>/static/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src = "<%=request.getContextPath()%>/static/layer/layer-v3.1.1/layer/layer.js"></script>
 
-
-
 <script type="text/javascript">
 	var level = ${user.userLevel}
 	
