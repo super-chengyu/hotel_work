@@ -50,7 +50,7 @@ public class MenuPageController {
      * @author: hhq
      * @return
      */
-    @RequestMapping("toAddMenus")
+    @RequestMapping("toAddMenu")
     public String toAddMenus(){
         return "menu/add";
     }

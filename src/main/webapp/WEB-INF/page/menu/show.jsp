@@ -34,6 +34,11 @@
 					html+="</td>"
 					html+="</tr>"
 				}
+					html+="<td>"
+					if(level == 5){
+					html+="<button class='layui-btn layui-btn-normal' type='button' onclick = 'add()'>上架菜品</button>"
+					}
+					html+="</td>"
 				pageInfo += "<button type='button' class='layui-btn' onclick = 'page(0, "+data.data.pages+")'><i class='layui-icon'></i></button>";
 				pageInfo += "<button type='button' class='layui-btn' onclick = 'page(1, "+data.data.pages+")'><i class='layui-icon'></i></button>";
 				$("#tbd").html(html);
@@ -41,25 +46,25 @@
 		})
 	}
 
-	function lo(id){
+	function lo(mId){
 		layer.open({
 		type: 2,
 		title: '此菜品介绍',
 		shadeClose: true,
 		shade: 0.8,
 		area: ['380px', '40%'],
-		content: '<%=request.getContextPath()%>/menu/toMenuList?id='+id, //iframe的url
+		content: '<%=request.getContextPath()%>/menu/toMenuList?mId='+mId, //iframe的url
 		});
 	}
 
-	function add(mId){
+	function add(){
 		layer.open({
 		type: 2,
 		title: '上架菜品',
 		shadeClose: true,
 		shade: 0.8,
 		area: ['380px', '90%'],
-		content: '<%=request.getContextPath()%>/menu/toAddMenus?mId='+mId, //iframe的url
+		content: '<%=request.getContextPath()%>/menu/toAddMenu', //iframe的url
 		});
 	}
 

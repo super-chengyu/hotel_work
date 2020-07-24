@@ -65,7 +65,7 @@ public class MenuController {
      *
      * @Title: addMenu
      * @Description: 上架菜品
-     * @Date: 2020年7月23日
+     * @Date: 2020年7月24日
      * @author: hhq
      * @param: @return
      * @throws
@@ -73,18 +73,35 @@ public class MenuController {
     @RequestMapping("addMenu")
     public ResultModel<Object> addMenu(Menu menu){
         try {
-            QueryWrapper<Menu> queryWrapper = new QueryWrapper<>();
-            queryWrapper.eq("menu_name", menu.getMenuName());
-            Menu menu1 = menuService.getOne(queryWrapper);
-            if(menu1 != null){
-                return new ResultModel<>().error("已有该菜品");
-            } else {
-                menuService.save(menu);
-                return new ResultModel<>().success("菜品增加成功");
-            }
+            menuService.save(menu);
+            return new ResultModel<>().success("菜品增加成功");
         } catch (Exception e){
             e.printStackTrace();
             return new ResultModel<>().error("服务器异常");
+        }
+    }
+
+    /**
+     *
+     * @Title: getMenuName
+     * @Description: 菜品名去重
+     * @Date: 2020年7月24日
+     * @author: hhq
+     * @param: @param user
+     * @param: @return
+     * @return:
+     * @throws
+     */
+    @RequestMapping("getMenuName")
+    public boolean getMenuName(String  menuName){
+        try {
+            QueryWrapper<Menu> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("menu_name", menuName);
+            Menu menu2 = menuService.getOne(queryWrapper);
+            return menu2 == null ? true : false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 
