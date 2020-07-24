@@ -78,6 +78,7 @@
                             <li><a href="<%=request.getContextPath()%>/user/toShow" target="right"><span>用户信息</span></a></li>
                             <li><a href="<%=request.getContextPath()%>/recondite/toShow" target="right"><span>待接单</span></a></li>
                             <li><a href="<%=request.getContextPath()%>/track/toHand" target="right"><span>总营业额</span></a></li>
+                            <li><a href="<%=request.getContextPath()%>/user/toShowUserLevel5" target="right"><span>厨师管理</span></a></li>
                         </c:if>
                         <c:if test="${user.userLevel == 5}">
                             <li><a href="<%=request.getContextPath()%>/recondite/toShow" target="right"><span>商家准备</a></li>

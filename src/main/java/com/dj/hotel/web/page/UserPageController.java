@@ -31,6 +31,15 @@ public class UserPageController {
     }
 
     /**
+     * 去厨师管理页面
+     * @return
+     */
+    @RequestMapping("toShowUserLevel5")
+    public String toShowUserLevel5(){
+        return "user/show_user_level5";
+    }
+
+    /**
      * 用户去展示
      * @Date: 2020年7月24日
      * @author: csx
