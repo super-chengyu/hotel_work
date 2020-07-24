@@ -46,8 +46,8 @@ public class MenuController {
         Map<String, Object> map = new HashMap<>();
         try {
             QueryWrapper<Menu> queryWrapper = new QueryWrapper<>();
-            if (user.getUserLevel() == SysConstant.user_level_two) {
-               queryWrapper.eq("menu_status", SysConstant.menu_status_zero);
+            if (user.getUserLevel() == SysConstant.USER_LEVEL_TWO) {
+               queryWrapper.eq("menu_status", SysConstant.MENU_STATUS_ZERO);
             }
             queryWrapper.eq("is_del", SysConstant.IS_DEL);
             IPage<Menu> page = new Page<>(pageNo, SysConstant.HOME_PAGE_SIZE);

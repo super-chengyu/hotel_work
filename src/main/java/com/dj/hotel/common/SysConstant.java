@@ -28,20 +28,20 @@ public class SysConstant {
 	/**
 	 * 普通用户
 	 */
-	public static final Integer user_level_two = 2;
+	public static final Integer USER_LEVEL_TWO = 2;
 
 	/**
 	 * 大堂经理
 	 */
-	public static final Integer user_level_four = 4;
+	public static final Integer USER_LEVEL_FOUR = 4;
 
 	/**
 	 * 菜品状态   上架
 	 */
-	public static final Integer menu_status_zero = 0;
+	public static final Integer MENU_STATUS_ZERO = 0;
 
 	/**
 	 * 菜品状态   下架
 	 */
-	public static final Integer menu_status_one = 1;
+	public static final Integer MENU_STATUS_ONE = 1;
 }
