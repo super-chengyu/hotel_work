@@ -41,6 +41,11 @@ public class SysConstant {
 	public static final Integer USER_LEVEL_TWO = 2;
 
 	/**
+	 * 会员
+	 */
+	public static final Integer USER_LEVEL_THREE = 3;
+
+	/**
 	 * 大堂经理
 	 */
 	public static final Integer USER_LEVEL_FOUR = 4;

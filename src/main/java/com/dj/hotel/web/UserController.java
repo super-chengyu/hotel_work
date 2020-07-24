@@ -145,19 +145,45 @@ public class UserController {
      * @Description: 只展示用户等级为5的
      * @Date: 2020年7月24日
      * @author: ck
-     * @param: @param home, pageNo
      * @param: @return
      * @return: map
      * @throws
      */
     @RequestMapping("level5UpdateDel")
-    public ResultModel<Object> level5UpdateDel(User user, Integer pageNo){
+    public ResultModel<Object> level5UpdateDel(User user){
         Map<String, Object> map = new HashMap<>();
         try {
             QueryWrapper<User> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("is_del", SysConstant.IS_DEL);
             userService.updateById(user);
             return new ResultModel<>().success(queryWrapper);
+        } catch (Exception e){
+            e.printStackTrace();
+            return new ResultModel<>().error("服务器异常");
+        }
+    }
+
+    /**
+     *
+     * @Title: updateUserLevel3
+     * @Description: 通过绑定手机号升级用户为会员
+     * @Title: showUserLevel5
+     * @Description: 只展示用户等级为5的
+     * @Date: 2020年7月24日
+     * @author: ck
+     * @param: @return
+     * @return: map
+     * @throws
+     */
+    @RequestMapping("updateUserLevel3")
+    public ResultModel<Object> updateUserLevel3(User user){
+        Map<String, Object> map = new HashMap<>();
+        try {
+            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("user_phone", user.getUserPhone());
+            user.setUserLevel(SysConstant.USER_LEVEL_THREE);
+            userService.updateById(user);
+            return new ResultModel<>().success();
         } catch (Exception e){
             e.printStackTrace();
             return new ResultModel<>().error("服务器异常");
