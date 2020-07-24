@@ -8,35 +8,30 @@
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/static/layer/layui-v2.5.6/layui/css/layui.css"  media="all">
 <script type="text/javascript" src = "<%=request.getContextPath()%>/static/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src = "<%=request.getContextPath()%>/static/layer/layer-v3.1.1/layer/layer.js"></script>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/static/jQueryBg/css/index_style.css">
+<script type="text/javascript" src = "<%=request.getContextPath()%>/static/layer/layer-v3.1.1/layer/layer.js"></script>
 <script type="text/javascript">
 
 </script>	
 </head>
-
-<body style="color: red">
+<!-----HEADER STAR----->
+<body>
 <div class="header" id="demo">
 	<div class="top_logo"></div>
-
 	<div class="canvaszz"> </div>
 	<canvas id="canvas"></canvas>
 </div>
 <!-----HEADER END----->
-
 <!--用来解决视频右键菜单，用于视频上面的遮罩层 START-->
 <div class="videozz"></div>
 <!--用来解决视频右键菜单，用于视频上面的遮罩层 END-->
-
 <!--音乐 START-->
 <audio controls autoplay class="audio">
 	<source src="<%=request.getContextPath()%>/static/jQueryBg/css/Music.mp3" type="audio/mp3">
 	<source src="<%=request.getContextPath()%>/static/jQueryBg/css/Music.ogg" type="audio/ogg">
 	<source src="<%=request.getContextPath()%>/static/jQueryBg/css/Music.aac" type="audio/mp4">
 </audio>
-<!--音乐 END-->
 
-</body>
 <script>
 	//宇宙特效
 	"use strict";
@@ -142,4 +137,7 @@
 
 	animation();
 </script>
+
+</body>
+
 </html>

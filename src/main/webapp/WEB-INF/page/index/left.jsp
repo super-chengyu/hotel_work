@@ -59,7 +59,7 @@
             </div>
             <div class="nav-slide">
                 <div class="nav-slide-o">
-                    <li><a href="#" target="right"><span>奥利给</span></a></li>
+                    <li><a href="#"><span>奥利给</span></a></li>
                 </div>
                 <div class="nav-slide-o">
                     <ul>

@@ -16,6 +16,11 @@ public class SysConstant {
 	public static final Integer HOME_PAGE_SIZE = 5;
 
 	/**
+	 * 房间状态
+	 */
+	public static final Integer HOME_STATUS = 1;
+
+	/**
 	 * 只用户等级为5
 	 */
 	public static final Integer SHOW_USER_LEVEL5 = 5;
