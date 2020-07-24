@@ -109,10 +109,10 @@ public class UserController {
 
     /**
      *
-     * @Title: showUserLevel4
+     * @Title: showUserLevel5
      * @Description: 只展示用户等级为4的
      * @Date: 2020年7月24日
-     * @author: ycy
+     * @author: ck
      * @param: @param home, pageNo
      * @param: @return
      * @return: map
@@ -138,10 +138,10 @@ public class UserController {
 
     /**
      *
-     * @Title: registerUser
-     * @Description: 用户注册
-     * @Date: 2020年7月23日
-     * @author: hhq
+     * @Title: level5UpdateDel
+     * @Description: 裁员修改isDel为1
+     * @Date: 2020年7月24日
+     * @author: ck
      * @param: @param user
      * @param: @return
      * @return:
