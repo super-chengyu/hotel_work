@@ -23,7 +23,11 @@
 				var pageInfo = "";
 				for(var i=0; i<data.data.userList.length; i++){
 					var user = data.data.userList[i];
-					html+="<tr>"
+					if(user.userLevel == 3){
+						html += "<tr style = 'color:red'>";
+					}else{
+						html += "<tr>"
+					}
 					html+="<td>"+user.userName+"</td>"
 					html+="<td>"+user.userEmail+"</td>"
 					html+="<td>"+user.userPhone+"</td>"
