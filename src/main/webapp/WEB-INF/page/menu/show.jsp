@@ -26,9 +26,7 @@
 				for(var i=0; i<data.data.menuList.length; i++){
 					var menu = data.data.menuList[i];
 					html+="<tr>"
-					html+="<td>"+menu.menuName+"</td>"
-					html+="<td>"+menu.menuPrice+"</td>"
-	                html+="<td>"+menu.menuNote+"</td>"
+					html+="<td>	<a href='#' onclick='lo("+menu.id+")'>"+menu.menuName+"</a></td>"
 					html+="<td>"
 					if(level == 2){
 						html+="<button class='layui-btn layui-btn-normal' type='button' onclick = 'toAdd("+menu.id+")'>点菜</button>"
@@ -106,9 +104,7 @@
 			    <thead>
 			      <tr>
 			        <th>菜品名</th>
-					<th>菜品价格</th>
-					<th>菜品介绍</th>
-			      </tr> 
+			      </tr>
 			    </thead>
 			<tbody id = "tbd">
 			
