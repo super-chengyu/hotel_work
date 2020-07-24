@@ -111,17 +111,17 @@ public class UserController {
 
     /**
      *
-     * @Title: showMenu
-     * @Description: 菜品展示
-     * @Date: 2020年7月23日
+     * @Title: userShow
+     * @Description: 用户展示
+     * @Date: 2020年7月24日
      * @author: csx
-     * @param: @param menu, pageNo
+     * @param: @param user, pageNo
      * @param: @return
      * @return: map
      * @throws
      */
     @RequestMapping("show")
-    public ResultModel<Object> showHome(User user, Integer pageNo){
+    public ResultModel<Object> show(User user, Integer pageNo){
         Map<String, Object> map = new HashMap<>();
         try {
             QueryWrapper<User> queryWrapper = new QueryWrapper<>();
