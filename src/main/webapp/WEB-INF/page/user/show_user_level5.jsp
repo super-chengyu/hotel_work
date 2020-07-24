@@ -40,14 +40,19 @@
 
     //伪删
     function toLevel5UpdateDel(id){
+        var index = layer.load(1,{shade:0.5});
         $.post("<%=request.getContextPath()%>/user/level5UpdateDel",
             {"id":id, "isDel":1},
             function (data){
                 if(data.code != 200){
-                    alert(data.msg);
+                    layer.msg(data.msg, {icon: 5, time: 2000});
                     return ;
                 }
-                search();
+                layer.msg(data.msg, {icon:6, time: 2000},function(){
+                    layer.close(index);
+                    search();
+                    return ;
+                })
             })
     }
 
