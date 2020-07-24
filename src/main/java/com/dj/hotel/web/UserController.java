@@ -181,7 +181,7 @@ public class UserController {
         try {
             QueryWrapper<User> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("user_phone", user.getUserPhone());
-            user.setUserLevel(3);
+            user.setUserLevel(SysConstant.USER_LEVEL_THREE);
             userService.updateById(user);
             return new ResultModel<>().success();
         } catch (Exception e){
