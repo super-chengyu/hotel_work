@@ -35,3 +35,8 @@ INSERT INTO `base_data` VALUES ('2', '普通用户', '1', '0');
 INSERT INTO `base_data` VALUES ('3', '会员用户', '1', '0');
 INSERT INTO `base_data` VALUES ('4', '大堂经理', '1', '0');
 INSERT INTO `base_data` VALUES ('5', '厨师', '1', '0');
+INSERT INTO `base_data` VALUES ('6', '用餐状态', '0', '0');
+INSERT INTO `base_data` VALUES ('7', '已到店', '6', '0');
+INSERT INTO `base_data` VALUES ('8', '已点餐', '6', '0');
+INSERT INTO `base_data` VALUES ('9', '餐已好', '6', '0');
+INSERT INTO `base_data` VALUES ('10', '已离店', '6', '0');
