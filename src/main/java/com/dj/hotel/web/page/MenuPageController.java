@@ -29,4 +29,16 @@ public class MenuPageController {
         return "menu/show";
     }
 
+
+    /**
+     * 菜品去上架
+     * @Date: 2020年7月23日
+     * @author: hhq
+     * @return
+     */
+    @RequestMapping("toAddMenus")
+    public String toAddMenus(){
+        return "menu/add";
+    }
+
 }

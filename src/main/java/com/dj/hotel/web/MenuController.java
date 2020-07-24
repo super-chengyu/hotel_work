@@ -56,9 +56,9 @@ public class MenuController {
             map.put("pages", pageInfo.getPages());
             return new ResultModel<>().success(map);
         } catch (Exception e){
-            e.printStackTrace();
-            return new ResultModel<>().error("服务器异常");
+                e.printStackTrace();
+                return new ResultModel<>().error("服务器异常");
+            }
         }
-    }
 
 }
