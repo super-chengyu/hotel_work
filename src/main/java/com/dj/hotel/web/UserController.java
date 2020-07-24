@@ -108,7 +108,7 @@ public class UserController {
 
     /**
      *
-     * @Title: userShow
+     * @Title: show
      * @Description: 用户展示
      * @Title: showUserLevel5
      * @Description: 只展示用户等级为5的
@@ -207,7 +207,7 @@ public class UserController {
         try {
             QueryWrapper<User> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("is_del", SysConstant.IS_DEL);
-            IPage<User> page = new Page<>(pageNo, SysConstant.HOME_PAGE_SIZE);
+            IPage<User> page = new Page<>(pageNo, SysConstant.USER_PAGE_SIZE);
             IPage<User> pageInfo = userService.page(page, queryWrapper);
             map.put("userList", pageInfo.getRecords());
             map.put("pages", pageInfo.getPages());

@@ -32,7 +32,7 @@ public class MenuController {
 
     /**
      *
-     * @Title: showMenu
+     * @Title: show
      * @Description: 菜品展示
      * @Date: 2020年7月23日
      * @author: csx
@@ -42,7 +42,7 @@ public class MenuController {
      * @throws
      */
     @RequestMapping("show")
-    public ResultModel<Object> showHome(Menu menu, Integer pageNo, @SessionAttribute("user") User user){
+    public ResultModel<Object> show(Menu menu, Integer pageNo, @SessionAttribute("user") User user){
         Map<String, Object> map = new HashMap<>();
         try {
             QueryWrapper<Menu> queryWrapper = new QueryWrapper<>();
@@ -50,7 +50,7 @@ public class MenuController {
                queryWrapper.eq("menu_status", SysConstant.MENU_STATUS_ZERO);
             }
             queryWrapper.eq("is_del", SysConstant.IS_DEL);
-            IPage<Menu> page = new Page<>(pageNo, SysConstant.HOME_PAGE_SIZE);
+            IPage<Menu> page = new Page<>(pageNo, SysConstant.MENU_PAGE_SIZE);
             IPage<Menu> pageInfo = menuService.page(page, queryWrapper);
             map.put("menuList", pageInfo.getRecords());
             map.put("pages", pageInfo.getPages());

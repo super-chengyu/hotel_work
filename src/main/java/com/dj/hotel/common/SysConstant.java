@@ -16,6 +16,16 @@ public class SysConstant {
 	public static final Integer HOME_PAGE_SIZE = 5;
 
 	/**
+	 * 用户展示每页五条
+	 */
+	public static final Integer USER_PAGE_SIZE = 5;
+
+	/**
+	 * 菜品展示每页五条
+	 */
+	public static final Integer MENU_PAGE_SIZE = 5;
+
+	/**
 	 * 房间状态
 	 */
 	public static final Integer HOME_STATUS = 1;
