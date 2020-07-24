@@ -5,12 +5,10 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dj.hotel.common.ResultModel;
 import com.dj.hotel.common.SysConstant;
-import com.dj.hotel.pojo.Home;
-import com.dj.hotel.pojo.Menu;
-import com.dj.hotel.pojo.Track;
-import com.dj.hotel.pojo.User;
+import com.dj.hotel.pojo.*;
 import com.dj.hotel.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -42,12 +40,21 @@ public class MenuController {
      * @throws
      */
     @RequestMapping("show")
-    public ResultModel<Object> show(Menu menu, Integer pageNo, @SessionAttribute("user") User user){
+    public ResultModel<Object> show(Menu menu, MenuQuery menuQuery, Integer pageNo, @SessionAttribute("user") User user){
         Map<String, Object> map = new HashMap<>();
         try {
             QueryWrapper<Menu> queryWrapper = new QueryWrapper<>();
             if (user.getUserLevel() == SysConstant.USER_LEVEL_TWO) {
                queryWrapper.eq("menu_status", SysConstant.MENU_STATUS_ZERO);
+            }
+            if(!StringUtils.isEmpty(menuQuery.getMenuName())){
+                queryWrapper.like("menu_name", menuQuery.getMenuName());
+            }
+            if(menuQuery.getMinPrice() != null){
+                queryWrapper.ge("menu_price", menuQuery.getMinPrice());
+            }
+            if(menuQuery.getMaxPrice() != null){
+                queryWrapper.le("menu_price", menuQuery.getMaxPrice());
             }
             queryWrapper.eq("is_del", SysConstant.IS_DEL);
             IPage<Menu> page = new Page<>(pageNo, SysConstant.MENU_PAGE_SIZE);

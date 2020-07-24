@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -104,7 +104,11 @@
 		layer.close(index);
 		search();
 	}
-	
+
+	function sel(){
+		$("#pageNo").val(1);
+		search();
+	}
 </script>
 
 <!-- 去除超链接的下划线 -->
@@ -122,6 +126,11 @@
 		<button class="layui-btn layui-btn-normal" type="button" onclick = "wirte()">菜品展示</button>
 	</div><br/>
 	<form id = "fm">
+	<c:if test="${level != 5}">
+		菜品名：<input type="text" name="menuName"/><br/>
+		价格：<input type="text" name="minPrice"/>~<input type="text" name="maxPrice"/><br/>
+		<input type="button" onclick="sel()" value="搜索"/>
+	</c:if>
 		<input type = "hidden" value = "1" id = "pageNo" name = "pageNo"/>
 			<div class="layui-form">
 			  <table class="layui-table">
