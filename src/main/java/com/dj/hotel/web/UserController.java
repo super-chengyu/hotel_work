@@ -5,22 +5,15 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dj.hotel.common.ResultModel;
 import com.dj.hotel.common.SysConstant;
-import com.dj.hotel.pojo.Home;
-import com.dj.hotel.common.SysConstant;
-import com.dj.hotel.pojo.Menu;
 import com.dj.hotel.pojo.User;
 import com.dj.hotel.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -165,7 +158,6 @@ public class UserController {
             return new ResultModel<>().error(e.getMessage());
         }
     }
-
 
     /**
      *
