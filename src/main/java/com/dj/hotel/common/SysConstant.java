@@ -44,4 +44,9 @@ public class SysConstant {
 	 * 菜品状态   下架
 	 */
 	public static final Integer MENU_STATUS_ONE = 1;
+
+	/**
+	 * 已到店
+	 */
+	public static final Integer ARRIVED = 7;
 }

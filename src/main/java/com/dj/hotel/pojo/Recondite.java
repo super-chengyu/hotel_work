@@ -5,15 +5,19 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import lombok.experimental.Accessors;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
  * Recondite记录表
+ * @author 杨承雨
  */
 @Data
 @TableName("recondite")
+@Accessors(chain = true)
 public class Recondite {
 
     /** 主键ID */
@@ -26,7 +30,7 @@ public class Recondite {
     /** 在店日期 */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")//接收前台时间格式
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")//返回前台格式
-    private Date startTime;
+    private LocalDateTime startTime;
 
     /** 房间表(home)的id */
     private Integer homeId;
@@ -37,6 +41,6 @@ public class Recondite {
     /** 离店日期 */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")//接收前台时间格式
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")//返回前台格式
-    private Date endTime;
+    private LocalDateTime endTime;
 
 }
