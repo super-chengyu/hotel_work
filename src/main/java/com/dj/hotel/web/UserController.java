@@ -1,7 +1,11 @@
 package com.dj.hotel.web;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dj.hotel.common.ResultModel;
+import com.dj.hotel.common.SysConstant;
+import com.dj.hotel.pojo.Home;
 import com.dj.hotel.pojo.User;
 import com.dj.hotel.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 用户控制层
@@ -100,4 +106,58 @@ public class UserController {
             return false;
         }
     }
+
+    /**
+     *
+     * @Title: showUserLevel4
+     * @Description: 只展示用户等级为4的
+     * @Date: 2020年7月24日
+     * @author: ycy
+     * @param: @param home, pageNo
+     * @param: @return
+     * @return: map
+     * @throws
+     */
+    @RequestMapping("showUserLevel5")
+    public ResultModel<Object> showUserLevel5(User user, Integer pageNo){
+        Map<String, Object> map = new HashMap<>();
+        try {
+            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("user_level", SysConstant.SHOW_USER_LEVEL5);
+            queryWrapper.eq("is_del", SysConstant.IS_DEL);
+            IPage<User> page = new Page<>(pageNo, SysConstant.HOME_PAGE_SIZE);
+            IPage<User> pageInfo = userService.page(page, queryWrapper);
+            map.put("userList", pageInfo.getRecords());
+            map.put("pages", pageInfo.getPages());
+            return new ResultModel<>().success(map);
+        } catch (Exception e){
+            e.printStackTrace();
+            return new ResultModel<>().error("服务器异常");
+        }
+    }
+
+    /**
+     *
+     * @Title: registerUser
+     * @Description: 用户注册
+     * @Date: 2020年7月23日
+     * @author: hhq
+     * @param: @param user
+     * @param: @return
+     * @return:
+     * @throws
+     */
+    @RequestMapping("level5UpdateDel")
+    public ResultModel<Object> level5UpdateDel(User user){
+        try {
+            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+            userService.updateById(user);
+            queryWrapper.eq("is_del", user.getIsDel());
+            return new ResultModel<>().success(queryWrapper);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultModel<>().error(e.getMessage());
+        }
+    }
+
 }

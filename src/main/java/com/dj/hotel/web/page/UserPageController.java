@@ -29,4 +29,13 @@ public class UserPageController {
     public String toRegisterUser(){
         return "user/register";
     }
+
+    /**
+     * 去厨师管理页面
+     * @return
+     */
+    @RequestMapping("toShowUserLevel5")
+    public String toShowUserLevel5(){
+        return "user/show_user_level5";
+    }
 }
