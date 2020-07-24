@@ -12,7 +12,7 @@
 
 <script type="text/javascript">
 	var level = ${user.userLevel}
-	
+
 	$(function(){
 		search(1);
 	})
@@ -40,6 +40,29 @@
 				$("#pageInfo").html(pageInfo);
 		})
 	}
+
+	function lo(id){
+		layer.open({
+		type: 2,
+		title: '此菜品介绍',
+		shadeClose: true,
+		shade: 0.8,
+		area: ['380px', '40%'],
+		content: '<%=request.getContextPath()%>/menu/toMenuList?id='+id, //iframe的url
+		});
+	}
+
+	function add(mId){
+		layer.open({
+		type: 2,
+		title: '上架菜品',
+		shadeClose: true,
+		shade: 0.8,
+		area: ['380px', '90%'],
+		content: '<%=request.getContextPath()%>/menu/toAddMenus?mId='+mId, //iframe的url
+		});
+	}
+
 
 	function toAdd(mId){
 		layer.open({
