@@ -108,70 +108,17 @@ public class UserController {
 
     /**
      *
-     * @Title: showUserLevel5
-     * @Description: 只展示用户等级为4的
+     * @Title: userShow
+     * @Description: 用户展示
      * @Date: 2020年7月24日
-     * @author: ck
-     * @param: @param home, pageNo
-     * @param: @return
-     * @return: map
-     * @throws
-     */
-    @RequestMapping("showUserLevel5")
-    public ResultModel<Object> showUserLevel5(User user, Integer pageNo){
-        Map<String, Object> map = new HashMap<>();
-        try {
-            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-            queryWrapper.eq("user_level", SysConstant.SHOW_USER_LEVEL5);
-            queryWrapper.eq("is_del", SysConstant.IS_DEL);
-            IPage<User> page = new Page<>(pageNo, SysConstant.HOME_PAGE_SIZE);
-            IPage<User> pageInfo = userService.page(page, queryWrapper);
-            map.put("userList", pageInfo.getRecords());
-            map.put("pages", pageInfo.getPages());
-            return new ResultModel<>().success(map);
-        } catch (Exception e){
-            e.printStackTrace();
-            return new ResultModel<>().error("服务器异常");
-        }
-    }
-
-    /**
-     *
-     * @Title: level5UpdateDel
-     * @Description: 裁员修改isDel为1
-     * @Date: 2020年7月24日
-     * @author: ck
-     * @param: @param user
-     * @param: @return
-     * @return:
-     * @throws
-     */
-    @RequestMapping("level5UpdateDel")
-    public ResultModel<Object> level5UpdateDel(User user){
-        try {
-            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-            userService.updateById(user);
-            queryWrapper.eq("is_del", user.getIsDel());
-            return new ResultModel<>().success(queryWrapper);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResultModel<>().error(e.getMessage());
-        }
-    }
-
-    /**
-     *
-     * @Title: showMenu
-     * @Description: 菜品展示
-     * @Date: 2020年7月23日
      * @author: csx
-     * @param: @param menu, pageNo
+     * @param: @param user, pageNo
      * @param: @return
      * @return: map
      * @throws
      */
     @RequestMapping("show")
-    public ResultModel<Object> showHome(User user, Integer pageNo){
+    public ResultModel<Object> show(User user, Integer pageNo){
         Map<String, Object> map = new HashMap<>();
         try {
             QueryWrapper<User> queryWrapper = new QueryWrapper<>();

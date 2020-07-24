@@ -32,3 +32,5 @@ CREATE TABLE `menu` (
 -- ----------------------------
 -- Records of menu
 -- ----------------------------
+ALTER TABLE `menu`
+MODIFY COLUMN `menu_status`  int(11) NULL DEFAULT NULL COMMENT '菜名状态' AFTER `menu_note`;

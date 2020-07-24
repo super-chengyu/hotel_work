@@ -33,19 +33,22 @@ public class MenuController {
     /**
      *
      * @Title: showMenu
-     * @Description: 座位或包间的展示
+     * @Description: 菜品展示
      * @Date: 2020年7月23日
      * @author: csx
-     * @param: @param home, pageNo
+     * @param: @param menu, pageNo
      * @param: @return
      * @return: map
      * @throws
      */
     @RequestMapping("show")
-    public ResultModel<Object> showHome(Home home, Integer pageNo){
+    public ResultModel<Object> showHome(Menu menu, Integer pageNo, @SessionAttribute("user") User user){
         Map<String, Object> map = new HashMap<>();
         try {
             QueryWrapper<Menu> queryWrapper = new QueryWrapper<>();
+            if (user.getUserLevel() == SysConstant.USER_LEVEL_TWO) {
+               queryWrapper.eq("menu_status", SysConstant.MENU_STATUS_ZERO);
+            }
             queryWrapper.eq("is_del", SysConstant.IS_DEL);
             IPage<Menu> page = new Page<>(pageNo, SysConstant.HOME_PAGE_SIZE);
             IPage<Menu> pageInfo = menuService.page(page, queryWrapper);

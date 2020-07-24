@@ -52,4 +52,29 @@ public class HomeController {
             return new ResultModel<>().error("服务器异常");
         }
     }
+
+    /**
+     *
+     * @Title: updateHomeStatus
+     * @Description: 挑选包间后修改包间状态
+     * @Date: 2020年7月24日
+     * @author: ycy
+     * @param: @param id
+     * @param: @return
+     * @return: resultModel
+     * @throws
+     */
+    @RequestMapping("updateHomeStatus")
+    public ResultModel<Object> updateHomeStatus(Integer id){
+        try {
+            Home home = new Home();
+            home.setId(id);
+            home.setHomeStatus(SysConstant.HOME_STATUS);
+            homeService.updateById(home);
+            return new ResultModel<>().success("选择成功");
+        } catch (Exception e){
+            e.printStackTrace();
+            return new ResultModel<>().error(e.getMessage());
+        }
+    }
 }
