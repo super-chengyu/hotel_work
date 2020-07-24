@@ -14,4 +14,9 @@ public class SysConstant {
 	 * 房间展示每页五条
 	 */
 	public static final Integer HOME_PAGE_SIZE = 5;
+
+	/**
+	 * 房间状态
+	 */
+	public static final Integer HOME_STATUS = 1;
 }

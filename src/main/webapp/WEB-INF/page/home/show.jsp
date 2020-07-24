@@ -29,7 +29,13 @@
 					var home = data.data.homeList[i];
 					html+="<tr>"
 					html+="<td>"+home.homeName+"</td>"
-					html+="<td>"+home.homeStatus+"</td>"
+					if (home.homeStatus == 0){
+						html+="<td>可选择</td>"
+					}
+					if (home.homeStatus == 1){
+						html+="<td>已选择</td>"
+					}
+					html+="<td><button type='button' class='layui-btn layui-btn-primary' onclick='checkHome("+home.id+", "+home.homeStatus+", "+home.isVip+")'>选择</button></td>"
 					html+="</tr>"
 				}
 				pageInfo += "<button type='button' class='layui-btn' onclick = 'page(0, "+data.data.pages+")'><i class='layui-icon'></i></button>";
@@ -63,6 +69,32 @@
 		layer.close(index);
 		search();
 	}
+
+	function checkHome(id, status, vip) {
+		var index = layer.load(1,{shade:0.3});
+		if (status == 1){
+			layer.msg("该房间已被挑选");
+			layer.close(index);
+			return;
+		}
+		if (level == 2 && vip == 0){
+			layer.msg("您无法挑选会员包间");
+			layer.close(index);
+			return;
+		}
+		$.post ("<%=request.getContextPath()%>/home/updateHomeStatus",
+				{id: id},
+				function (data) {
+					if (data.code != 200){
+						layer.msg(data.msg, {icon: 2});
+						return;
+					} else {
+						layer.msg(data.msg,{icon: 6}, function(){
+							search();
+						});
+					}
+				})
+	}
 	
 </script>
 
@@ -88,7 +120,7 @@
 		</fieldset>
 	</c:if>
 	<div id = "wirte">
-		<button class="layui-btn layui-btn-normal" type="button" onclick = "wirte()">填写报销单</button>
+		<button class="layui-btn layui-btn-normal" type="button" onclick = "wirte()">新增包间</button>
 	</div><br/>
 	<form id = "fm">
 		<input type = "hidden" value = "1" id = "pageNo" name = "pageNo"/>
@@ -97,12 +129,14 @@
 			    <colgroup>
 			      <col width="200">
 			      <col width="150">
+			      <col width="150">
 			    </colgroup>
 			    <thead>
 			      <tr>
 			        <th>座位名</th>
 					<th>当前状态</th>
-			      </tr> 
+					<th>操作</th>
+			      </tr>
 			    </thead>
 			<tbody id = "tbd">
 			
