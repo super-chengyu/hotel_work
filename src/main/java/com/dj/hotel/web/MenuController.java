@@ -58,7 +58,34 @@ public class MenuController {
         } catch (Exception e){
                 e.printStackTrace();
                 return new ResultModel<>().error("服务器异常");
-            }
         }
+    }
+
+    /**
+     *
+     * @Title: addMenu
+     * @Description: 上架菜品
+     * @Date: 2020年7月23日
+     * @author: hhq
+     * @param: @return
+     * @throws
+     */
+    @RequestMapping("addMenu")
+    public ResultModel<Object> addMenu(Menu menu){
+        try {
+            QueryWrapper<Menu> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("menu_name", menu.getMenuName());
+            Menu menu1 = menuService.getOne(queryWrapper);
+            if(menu1 != null){
+                return new ResultModel<>().error("已有该菜品");
+            } else {
+                menuService.save(menu);
+                return new ResultModel<>().success("菜品增加成功");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+            return new ResultModel<>().error("服务器异常");
+        }
+    }
 
 }
