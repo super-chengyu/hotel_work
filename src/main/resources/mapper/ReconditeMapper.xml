@@ -5,6 +5,7 @@
 
 <mapper namespace="com.dj.hotel.mapper.ReconditeMapper">
 
+    <!-- 新增轨迹 -->
     <insert id="insertRecondite">
         insert into recondite
  		(

@@ -10,6 +10,13 @@ import org.springframework.dao.DataAccessException;
  */
 public interface ReconditeMapper extends BaseMapper<Recondite> {
 
+    /**
+     * insertRecondite
+     * 轨迹
+     * ck
+     * @param recondite
+     * @throws DataAccessException
+     */
     void insertRecondite(Recondite recondite) throws DataAccessException;
 
 }
