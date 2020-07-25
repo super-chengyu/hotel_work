@@ -5,6 +5,26 @@
 
 <mapper namespace="com.dj.hotel.mapper.TrackMapper">
 
+    <sql id="TRACK_COLUMN">
+        id,
+        reco_id,
+        menu_id,
+        menu_num,
+        menu_price,
+        user_id,
+        menu_confirm
+    </sql>
+
+    <sql id="TRACK_AS">
+        t.id,
+        t.reco_id,
+        t.menu_id,
+        t.menu_num,
+        t.menu_price,
+        t.user_id,
+        t.menu_confirm
+    </sql>
+
     <!-- 轨迹表新增 -->
     <insert id="addTrack" useGeneratedKeys="true" keyProperty="id">
         insert into track (
@@ -19,7 +39,16 @@
     </insert>
 
     <!-- 查看自己点餐信息 -->
-    <select id="findTrackByAll" resultType="Track">
-
+    <select id="findTrackByAll" resultType="com.dj.hotel.pojo.Track">
+      SELECT
+            <include refid="TRACK_AS"/>, m.menu_name AS menu_name_show,
+            u.user_name AS user_name_show
+        FROM
+            track t
+        LEFT JOIN menu m ON t.menu_id = m.id
+        LEFT JOIN `user` u ON t.user_id = u.id
+        LEFT JOIN recondite r ON t.reco_id = r.id
+        WHERE
+            t.user_id = #{user.id}
     </select>
 </mapper>

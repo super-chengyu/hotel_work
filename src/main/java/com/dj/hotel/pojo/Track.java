@@ -1,6 +1,7 @@
 package com.dj.hotel.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -30,6 +31,13 @@ public class Track {
 
     /** 菜品表(menu)的备注 */
     private String menuConfirm;
+
+    @TableField("menu_name")
+    private String menuNameShow;
+
+    @TableField("user_name")
+    private String userNameShow;
+
 
 
 }

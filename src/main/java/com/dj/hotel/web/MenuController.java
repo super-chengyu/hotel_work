@@ -114,29 +114,6 @@ public class MenuController {
 
     /**
      *
-     * @Title: upMenu
-     * @Description: 上架菜品
-     * @Date: 2020年7月24日
-     * @author: hhq
-     * @param: @param user
-     * @param: @return
-     * @return:
-     * @throws
-     */
-    @RequestMapping("upMenu")
-    public ResultModel<Object> upMenu(Menu menu){
-        try {
-            menu.setMenuStatus(0);
-            menuService.updateById(menu);
-            return new ResultModel<>().success("上架成功");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResultModel<>().error("服务器异常");
-        }
-    }
-
-    /**
-     *
      * @Title: updateMenu
      * @Description: 修改菜品
      * @Date: 2020年7月24日
@@ -169,7 +146,6 @@ public class MenuController {
      */
     @RequestMapping("updateIsDel")
     public ResultModel<Object> updateIsDel(Menu menu){
-        Map<String, Object> map = new HashMap<>();
         try {
             QueryWrapper<Menu> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("is_del", SysConstant.IS_DEL);
@@ -180,4 +156,28 @@ public class MenuController {
             return new ResultModel<>().error("服务器异常");
         }
     }
+
+    /**
+     *
+     * @Title: upMenu
+     * @Description: 将菜品改为上架状态
+     * @Date: 2020年7月25日
+     * @author: hhq
+     * @param: @return
+     * @return:
+     * @throws
+     */
+    @RequestMapping("upMenu")
+    public ResultModel<Object> upMenu(Menu menu){
+        try {
+            QueryWrapper<Menu> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("menu_status", menu.getMenuStatus());
+            menuService.updateById(menu);
+            return new ResultModel<>().success(queryWrapper);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultModel<>().error("服务器异常");
+        }
+    }
+
 }

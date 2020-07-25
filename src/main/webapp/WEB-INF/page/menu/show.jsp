@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/static/layer/layui-v2.5.6/layui/css/layui.css"  media="all">
 <script type="text/javascript" src = "<%=request.getContextPath()%>/static/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src = "<%=request.getContextPath()%>/static/layer/layer-v3.1.1/layer/layer.js"></script>
-
 <script type="text/javascript">
 	var level = ${user.userLevel}
 
@@ -71,6 +70,42 @@
 				layer.close(index);
 				search();
 				return ;
+				})
+		})
+	}
+
+	function up(id){
+		var index = layer.load(1, {shade: 0.3})
+		$.post("<%=request.getContextPath()%>/menu/upMenu",
+				{"id":id, "menuStatus":0},
+				function (data){
+				if(data.code != 200){
+					layer.msg(data.msg, {icon: 5, time: 2000});
+					return ;
+				}
+				layer.msg(data.msg, {
+				icon: 6,
+				time: 2000 //2秒关闭（如果不配置，默认是3秒）
+				}, function(){
+				layer.close(index);
+				search();
+				});
+				})
+	}
+
+	function low(id){
+		var index = layer.load(1,{shade:0.5});
+		$.post("<%=request.getContextPath()%>/menu/upMenu",
+				{"id":id, "menuStatus":1},
+				function (data){
+					if(data.code != 200){
+						layer.msg(data.msg, {icon: 5, time: 2000});
+						return ;
+					}
+					layer.msg(data.msg, {icon:6, time: 2000},function(){
+					layer.close(index);
+					search();
+					return;
 				})
 		})
 	}
