@@ -63,6 +63,7 @@
 	<form id="fm">
 		<input type = "hidden" name = "userId" value = "${user.id}"/>
 		<input type = "hidden" name = "menuId" value = "${menu.id}"/>
+		<input type = "hidden" name = "recoId" value = "${recondite.id}"/>
 		菜品名：${menu.menuName}<br/>
 		菜品价格：<input type = "text" value = "${menu.menuPrice}" name = "menuPrice"/><br/>
 		订购数量：<input type = "text" name = "menuNum"/><br />

@@ -28,7 +28,7 @@
 					html+="<tr>"
 					html+="<td>	<a href='#' onclick='lo("+menu.id+")'>"+menu.menuName+"</a></td>"
 					html+="<td>"
-					if(level == 2){
+					if(level == 2 || level == 3){
 						html+="<button class='layui-btn layui-btn-normal' type='button' onclick = 'toAdd("+menu.id+")'>点菜</button>"
 					}
 					if(level == 4){
