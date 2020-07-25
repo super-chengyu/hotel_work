@@ -67,6 +67,7 @@
                             <li><a href="<%=request.getContextPath()%>/home/toShow" target="right"><span>挑选座位</span></a></li>
                             <li><a href="<%=request.getContextPath()%>/menu/toShow" target="right"><span>我要点餐</span></a></li>
                             <li><a href="<%=request.getContextPath()%>/track/toShow" target="right"><span>点餐记录</span></a></li>
+                            <li><a href="<%=request.getContextPath()%>/recondite/toReconditeShow" target="right"><span>已完成订单记录</span></a></li>
                         </c:if>
                         <c:if test="${user.userLevel == 3}">
                             <li><a href="<%=request.getContextPath()%>/home/toShow" target="right"><span>挑选座位</span></a></li>
