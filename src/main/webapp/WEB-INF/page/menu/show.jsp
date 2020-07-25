@@ -41,6 +41,7 @@
 					}
 					if(level == 5){
 						html+="<button class='layui-btn layui-btn-normal' type='button' onclick = 'upda("+menu.id+")'>修改菜品</button>"
+						html+="<button class='layui-btn layui-btn-normal' type='button' onclick = 'updateZero("+menu.id+")'>删除菜品</button>"
 					}
 					html+="</td>"
 					html+="</tr>"
@@ -54,6 +55,23 @@
 				pageInfo += "<button type='button' class='layui-btn' onclick = 'page(1, "+data.data.pages+")'><i class='layui-icon'></i></button>";
 				$("#tbd").html(html);
 				$("#pageInfo").html(pageInfo);
+		})
+	}
+
+	function updateZero(id){
+		var index = layer.load(1,{shade:0.5});
+		$.post("<%=request.getContextPath()%>/menu/updateIsDel",
+				{"id":id, "isDel":1},
+				function (data){
+				if(data.code != 200){
+					layer.msg(data.msg, {icon: 5, time: 2000});
+					return ;
+				}
+				layer.msg(data.msg, {icon:6, time: 2000},function(){
+				layer.close(index);
+				search();
+				return ;
+				})
 		})
 	}
 

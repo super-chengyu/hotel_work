@@ -156,4 +156,28 @@ public class MenuController {
             return new ResultModel<>().error("服务器异常");
         }
     }
+
+    /**
+     *
+     * @Title: updateIsDel
+     * @Description: 删除菜品
+     * @Date: 2020年7月25日
+     * @author: hhq
+     * @param: @return
+     * @return: map
+     * @throws
+     */
+    @RequestMapping("updateIsDel")
+    public ResultModel<Object> updateIsDel(Menu menu){
+        Map<String, Object> map = new HashMap<>();
+        try {
+            QueryWrapper<Menu> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("is_del", SysConstant.IS_DEL);
+            menuService.updateById(menu);
+            return new ResultModel<>().success(queryWrapper);
+        } catch (Exception e){
+            e.printStackTrace();
+            return new ResultModel<>().error("服务器异常");
+        }
+    }
 }
