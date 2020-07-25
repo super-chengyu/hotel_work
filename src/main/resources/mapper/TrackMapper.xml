@@ -6,7 +6,7 @@
 <mapper namespace="com.dj.hotel.mapper.TrackMapper">
 
     <!-- 轨迹表新增 -->
-    <insert id="addTrack">
+    <insert id="addTrack" useGeneratedKeys="true" keyProperty="id">
         insert into track (
                             reco_id,
                             menu_id,
