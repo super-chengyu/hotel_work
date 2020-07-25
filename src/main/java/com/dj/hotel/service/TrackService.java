@@ -1,6 +1,7 @@
 package com.dj.hotel.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.dj.hotel.pojo.Recondite;
 import com.dj.hotel.pojo.Track;
 import com.dj.hotel.pojo.User;
 
@@ -19,6 +20,8 @@ public interface TrackService extends IService<Track> {
      * @param: @return
      * @throws
      */
-    void addTrackAndMenu(Track track) throws Exception;
+    //void addTrackAndMenu(Track track) throws Exception;
+
+    void insertTrackAndReconditeAndMenu(Track track, User user, Recondite recondite) throws Exception;
 
 }

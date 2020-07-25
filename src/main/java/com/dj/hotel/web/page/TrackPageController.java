@@ -1,7 +1,10 @@
 package com.dj.hotel.web.page;
 
 import com.dj.hotel.pojo.Menu;
+import com.dj.hotel.pojo.Recondite;
+import com.dj.hotel.pojo.Track;
 import com.dj.hotel.service.MenuService;
+import com.dj.hotel.service.ReconditeService;
 import com.dj.hotel.service.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +25,9 @@ public class TrackPageController {
     @Autowired
     private MenuService menuService;
 
+    @Autowired
+    private ReconditeService reconditeService;
+
     /**
      *
      * @Title: toAddMenu
@@ -32,9 +38,11 @@ public class TrackPageController {
      * @throws
      */
     @RequestMapping("toAddMenu")
-    public String toAddMenu(Integer mId, Model model) throws Exception {
+    public String toAddMenu(Integer mId, Model model, Recondite recondite) throws Exception {
         Menu menu = menuService.findMenuByMid(mId);
+        Recondite recondite1 = reconditeService.getById(recondite.getId());
         model.addAttribute("menu", menu);
+        model.addAttribute("recondite", recondite1);
         return "track/insert";
     }
 

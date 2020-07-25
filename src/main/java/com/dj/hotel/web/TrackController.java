@@ -1,6 +1,8 @@
 package com.dj.hotel.web;
 
 import com.dj.hotel.common.ResultModel;
+import com.dj.hotel.common.SysConstant;
+import com.dj.hotel.pojo.Recondite;
 import com.dj.hotel.pojo.Track;
 import com.dj.hotel.pojo.User;
 import com.dj.hotel.service.MenuService;
@@ -9,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
+
+import java.time.LocalDateTime;
 
 /**
  * 记录页面控制层
@@ -31,10 +35,16 @@ public class TrackController {
      * @throws
      */
     @RequestMapping("addTrack")
-    public ResultModel<Object> addTrack(Track track, Double menuPrice, @SessionAttribute User user){
+    public ResultModel<Object> addTrack(Track track, Double menuPrice, @SessionAttribute User user,
+                                        Integer id){
         try {
             track.setMenuPrice(track.getMenuNum()*menuPrice);
-            trackService.addTrackAndMenu(track);
+            Recondite recondite = new Recondite()
+                    .setHomeId(id)
+                    .setUserId(user.getId())
+                    .setStartTime(LocalDateTime.now())
+                    .setEatStatus(8);
+            trackService.insertTrackAndReconditeAndMenu(track, user, recondite);
             return new ResultModel<>().success("订单提交成功");
         } catch (Exception e) {
             // TODO Auto-generated catch block
