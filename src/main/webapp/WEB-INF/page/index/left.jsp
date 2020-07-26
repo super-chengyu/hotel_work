@@ -67,24 +67,24 @@
                             <li><a href="<%=request.getContextPath()%>/home/toShow" target="right"><span>挑选座位</span></a></li>
                             <li><a href="<%=request.getContextPath()%>/menu/toShow" target="right"><span>我要点餐</span></a></li>
                             <li><a href="<%=request.getContextPath()%>/track/toShow" target="right"><span>点餐记录</span></a></li>
-                            <li><a href="<%=request.getContextPath()%>/recondite/toReconditeShow" target="right"><span>已完成订单记录</span></a></li>
+                            <li><a href="<%=request.getContextPath()%>/recondite/toReconditeShowEatStatus" target="right"><span>已完成订单记录</span></a></li>
                         </c:if>
                         <c:if test="${user.userLevel == 3}">
                             <li><a href="<%=request.getContextPath()%>/home/toShow" target="right"><span>挑选座位</span></a></li>
                             <li><a href="<%=request.getContextPath()%>/menu/toShow" target="right"><span>我要点餐</span></a></li>
                             <li><a href="<%=request.getContextPath()%>/track/toShow" target="right"><span>点餐记录</span></a></li>
+                            <li><a href="<%=request.getContextPath()%>/recondite/toReconditeShowEatStatus" target="right"><span>已完成订单记录</span></a></li>
                         </c:if>
                         <c:if test="${user.userLevel == 4}">
                             <li><a href="<%=request.getContextPath()%>/menu/toShow" target="right"><span>菜品展示</span></a></li>
                             <li><a href="<%=request.getContextPath()%>/user/toShow" target="right"><span>用户信息</span></a></li>
-                            <li><a href="<%=request.getContextPath()%>/recondite/toShow" target="right"><span>待接单</span></a></li>
                             <li><a href="<%=request.getContextPath()%>/track/toHand" target="right"><span>总营业额</span></a></li>
                             <li><a href="<%=request.getContextPath()%>/user/toShowUserLevel5" target="right"><span>厨师管理</span></a></li>
                             <li><a href="<%=request.getContextPath()%>/recondite/toReconditeShowEatStatus" target="right"><span>任务处理</span></a></li>
                         </c:if>
                         <c:if test="${user.userLevel == 5}">
-                            <li><a href="<%=request.getContextPath()%>/recondite/toShow" target="right"><span>商家准备</a></li>
                             <li><a href="<%=request.getContextPath()%>/menu/toShow" target="right"><span>菜品信息</span></a></li>
+                            <li><a href="<%=request.getContextPath()%>/recondite/toReconditeShowEatStatus" target="right"><span>任务处理</span></a></li>
                         </c:if>
                     </ul>
                 </div>
