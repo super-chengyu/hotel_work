@@ -300,6 +300,17 @@ public class UserController {
         }
     }
 
+    /**
+     *
+     * @Title: newPwd
+     * @Description: 重置密码
+     * @Date: 2020年7月26日
+     * @author: csx
+     * @param: @param userCode
+     * @param: @return
+     * @return: ResultModel<Object>
+     * @throws
+     */
     @RequestMapping("newPwd")
     public ResultModel<Object> newPwd(User user, UserQuery userQuery){
         try {
