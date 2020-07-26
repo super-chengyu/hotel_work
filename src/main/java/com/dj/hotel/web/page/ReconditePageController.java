@@ -29,5 +29,17 @@ public class ReconditePageController {
         return "recondite/show";
     }
 
+    /**
+     * toReconditeShowEatStatus
+     * 去查看已点餐订单查询
+     * @Date: 2020年7月26日
+     * @author: ck
+     * @return
+     */
+    @RequestMapping("toReconditeShowEatStatus")
+    public String toReconditeShowEatStatus(){
+        return "recondite/recondite_show_eat_status";
+    }
+
 
 }

@@ -1,5 +1,6 @@
 package com.dj.hotel.web;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.dj.hotel.common.ResultModel;
 import com.dj.hotel.common.SysConstant;
 import com.dj.hotel.pojo.Recondite;
@@ -53,6 +54,57 @@ public class ReconditeController {
             // TODO Auto-generated catch block
             e.printStackTrace();
             return new ResultModel<Object>().error("服务器异常，请稍后重试");
+        }
+    }
+
+    /**
+     *
+     * @Title: reconditeShowEatStatus
+     * @Description: 查看已点餐订单查询
+     * @Date: 2020年7月25日
+     * @author: ck
+     * @param: @return
+     * @return: map
+     * @throws
+     */
+    @RequestMapping("reconditeShowEatStatus")
+    public ResultModel<Object> reconditeShowEatStatus(Recondite recondite, Integer pageNo, @SessionAttribute User user) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            PageHelper.startPage(pageNo, 5);
+            List<Recondite> list = reconditeService.findReconditeById(recondite, user);
+            PageInfo<Recondite> pageInfo = new PageInfo<>(list);
+            map.put("reconditeList", pageInfo.getList());
+            map.put("pages", pageInfo.getPages());
+            return new ResultModel<Object>().success(map);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return new ResultModel<Object>().error("服务器异常，请稍后重试");
+        }
+    }
+
+    /**
+     *
+     * @Title: updateEatStatus
+     * @Description: 修改状态
+     * @Date: 2020年7月26日
+     * @author: ck
+     * @param: @return
+     * @return: map
+     * @throws
+     */
+    @RequestMapping("updateEatStatus")
+    public ResultModel<Object> updateEatStatus(Recondite recondite){
+        Map<String, Object> map = new HashMap<>();
+        try {
+            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("eat_status", recondite.getEatStatus());
+            reconditeService.updateById(recondite);
+            return new ResultModel<>().success(queryWrapper);
+        } catch (Exception e){
+            e.printStackTrace();
+            return new ResultModel<>().error("服务器异常");
         }
     }
 

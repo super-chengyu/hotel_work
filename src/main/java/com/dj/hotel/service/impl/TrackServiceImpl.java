@@ -2,13 +2,11 @@ package com.dj.hotel.service.impl;
 
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.dj.hotel.common.SysConstant;
 import com.dj.hotel.mapper.MenuMapper;
 import com.dj.hotel.mapper.ReconditeMapper;
 import com.dj.hotel.mapper.TrackMapper;
-import com.dj.hotel.pojo.Menu;
-import com.dj.hotel.pojo.Recondite;
-import com.dj.hotel.pojo.Track;
-import com.dj.hotel.pojo.User;
+import com.dj.hotel.pojo.*;
 import com.dj.hotel.service.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,17 +38,24 @@ public class TrackServiceImpl extends ServiceImpl<TrackMapper, Track> implements
     @Override
     public void insertTrackAndReconditeAndMenu(Track track, User user, Recondite recondite) throws Exception {
         Menu menu = menuMapper.findMenuByMid(track.getMenuId());
-        saveRecondite(recondite.getUserId(), recondite.getHomeId(), track.getRecoId());
+        if(user.getUserLevel() == 3){
+            saveRecondite(8, user.getId());
+        } else if(user.getUserLevel() == 4){
+            saveRecondite(9, user.getId());
+        } else if(user.getUserLevel() == 5){
+            saveRecondite(10, user.getId());
+        }
+        //saveRecondite(recondite.getUserId(), recondite.getHomeId());
         trackMapper.addTrack(track);
     }
 
-    private void saveRecondite(Integer userId, Integer homeId, Integer id) throws Exception {
+    private void saveRecondite(Integer eatStatus, Integer userId) throws Exception {
         Recondite recondite = new Recondite();
-        Track track = new Track();
+        Home home = new Home();
         recondite.setUserId(userId);
         recondite.setStartTime(LocalDateTime.now());
-        recondite.setHomeId(homeId);
-        track.setRecoId(id);
+        recondite.setHomeId(home.getId());
+        recondite.setEatStatus(eatStatus);
         recondite.setEndTime(LocalDateTime.now());
         reconditeMapper.insertRecondite(recondite);
     }

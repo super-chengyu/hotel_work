@@ -8,13 +8,12 @@
     <!-- 轨迹表新增 -->
     <insert id="addTrack" useGeneratedKeys="true" keyProperty="id">
         insert into track (
-                            reco_id,
                             menu_id,
                             menu_num,
                             menu_price,
                             menu_confirm
                             )
 			values
-		(#{recoId},#{menuId},#{menuNum},#{menuPrice},#{menuConfirm})
+		(#{menuId}, #{menuNum}, #{menuPrice}, #{menuConfirm})
     </insert>
 </mapper>

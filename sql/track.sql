@@ -21,7 +21,6 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `track`;
 CREATE TABLE `track` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `reco_id` int(11) DEFAULT NULL,
   `menu_id` int(11) DEFAULT NULL,
   `menu_num` int(11) DEFAULT NULL,
   `menu_price` decimal(10,2) DEFAULT NULL,
@@ -33,3 +32,6 @@ CREATE TABLE `track` (
 -- ----------------------------
 ALTER TABLE `track`
 ADD COLUMN `menu_confirm`  varchar(255) NULL COMMENT '备注' AFTER `menu_price`;
+
+ALTER TABLE `track`
+ADD COLUMN `user_id`  int(11) NULL AFTER `menu_confirm`;
