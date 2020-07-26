@@ -45,11 +45,7 @@
 					html+="</td>"
 					html+="</tr>"
 				}
-				html+="<td>"
-				if(level == 5){
-					html+="<button class='layui-btn layui-btn-normal' type='button' onclick = 'add()'>上架菜品</button>"
-				}
-				html+="</td>"
+
 				pageInfo += "<button type='button' class='layui-btn' onclick = 'page(0, "+data.data.pages+")'><i class='layui-icon'></i></button>";
 				pageInfo += "<button type='button' class='layui-btn' onclick = 'page(1, "+data.data.pages+")'><i class='layui-icon'></i></button>";
 				$("#tbd").html(html);
@@ -208,9 +204,9 @@
 
 </head>
 <body>
-	<div id = "wirte">
-		<button class="layui-btn layui-btn-normal" type="button" onclick = "wirte()">菜品展示</button>
-	</div><br/>
+	<c:if test="${user.userLevel == 5}">
+		<button class='layui-btn layui-btn-normal' type='button' onclick = 'add()'>上架菜品</button>
+	</c:if><br/>
 	<form id = "fm">
 	<c:if test="${level != 5}">
 		菜品名：<input type="text" name="menuName"/><br/>

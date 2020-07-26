@@ -7,7 +7,6 @@
 
     <sql id="TRACK_COLUMN">
         id,
-        reco_id,
         menu_id,
         menu_num,
         menu_price,
@@ -17,7 +16,6 @@
 
     <sql id="TRACK_AS">
         t.id,
-        t.reco_id,
         t.menu_id,
         t.menu_num,
         t.menu_price,
@@ -46,8 +44,11 @@
             track t
         LEFT JOIN menu m ON t.menu_id = m.id
         LEFT JOIN `user` u ON t.user_id = u.id
-        LEFT JOIN recondite r ON t.reco_id = r.id
         WHERE
             t.user_id = #{user.id}
+    </select>
+
+    <select id="priceSum" resultType="java.math.BigDecimal">
+        SELECT SUM(menu_price) FROM track;
     </select>
 </mapper>

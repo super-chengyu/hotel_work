@@ -4,15 +4,21 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dj.hotel.common.ResultModel;
+import com.dj.hotel.common.SendMailUtils;
 import com.dj.hotel.common.SysConstant;
 import com.dj.hotel.pojo.User;
+import com.dj.hotel.pojo.UserQuery;
 import com.dj.hotel.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -192,8 +198,8 @@ public class UserController {
 
     /**
      *
-     * @Title: level5UpdateDel
-     * @Description: 裁员修改isDel为1
+     * @Title: show
+     * @Description: 展示用户
      * @Date: 2020年7月24日
      * @author: csx
      * @param: @param user, pageNo
@@ -214,9 +220,117 @@ public class UserController {
             return new ResultModel<>().success(map);
         } catch (Exception e){
             e.printStackTrace();
-            return new ResultModel<>().error("服务器异常");
+            return new ResultModel<>().error(e.getMessage());
         }
     }
 
+    /**
+     *
+     * @Title: getEmailCode
+     * @Description: 获取验证码
+     * @Date: 2020年7月25日
+     * @author: csx
+     * @param: @param userCode
+     * @param: @return
+     * @return: ResultModel<Object>
+     * @throws
+     */
+    @RequestMapping("getEmailCode")
+    public ResultModel<Object> getEmailCode(User user){
+        try {
+            if(StringUtils.isEmpty(user.getUserEmail())) {
+                return new ResultModel<Object>().error("邮箱不能为空");
+            }
+            QueryWrapper queryWrapper = new QueryWrapper();
+            queryWrapper.eq("user_email", user.getUserEmail());
+            User user1 = userService.getOne(queryWrapper);
+            if(null == user1) {
+                return new ResultModel<Object>().error("该邮箱不存在");
+            }
+            int code = (int)((Math.random()*9+1)*100000);
+            user1.setUserCode(String.valueOf(code));
+            Calendar calendar=Calendar.getInstance();
+            calendar.setTime(new Date());
+            calendar.add(Calendar.MINUTE, SysConstant.CODE_TIME);
+            user1.setCodeTime(calendar.getTime());
+            userService.updateById(user1);
+            SendMailUtils.sendEmail(user.getUserEmail(), "验证码", String.valueOf(code));
+            return new ResultModel<Object>().success();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return new ResultModel<>().error(e.getMessage());
+        }
+    }
+
+    /**
+     *
+     * @Title: recovery
+     * @Description: 判断邮箱是否存在
+     * @Date: 2020年7月25日
+     * @author: csx
+     * @param: @param userCode
+     * @param: @return
+     * @return: ResultModel<Object>
+     * @throws
+     */
+    @RequestMapping("recovery")
+    public ResultModel<Object> recovery(User user){
+        Map<String, Object> map = new HashMap<>();
+        try {
+            if(StringUtils.isEmpty(user.getUserEmail())
+                    || StringUtils.isEmpty(user.getUserCode())) {
+                return new ResultModel<Object>().error("邮箱验证码输入不能为空");
+            }
+            QueryWrapper queryWrapper = new QueryWrapper();
+            queryWrapper.eq("user_email", user.getUserEmail());
+            User user1 = userService.getOne(queryWrapper);
+            if(null == user1) {
+                return new ResultModel<Object>().error("邮箱验证码输入有误");
+            }
+            if(user1.getCodeTime().getTime() < new Date().getTime()) {
+                return new ResultModel<Object>().error("验证码已超时，请重新获取");
+            }
+            map.put("userEmail", user1.getUserEmail());
+            return new ResultModel<Object>().success(map);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return new ResultModel<>().error(e.getMessage());
+        }
+    }
+
+    /**
+     *
+     * @Title: newPwd
+     * @Description: 重置密码
+     * @Date: 2020年7月26日
+     * @author: csx
+     * @param: @param userCode
+     * @param: @return
+     * @return: ResultModel<Object>
+     * @throws
+     */
+    @RequestMapping("newPwd")
+    public ResultModel<Object> newPwd(User user, UserQuery userQuery){
+        try {
+            if (StringUtils.isEmpty(userQuery.getNewPwd()) || StringUtils.isEmpty(userQuery.getNewPwdTo())){
+                return new ResultModel<Object>().error("您设置的密码不能为空，请重新设置");
+            }
+            QueryWrapper queryWrapper = new QueryWrapper();
+            queryWrapper.eq("user_email", user.getUserEmail());
+            User user1 = userService.getOne(queryWrapper);
+            if (!userQuery.getNewPwd().equals(userQuery.getNewPwdTo())){
+                return new ResultModel<Object>().error("请确认您输入的两次密码是否一致");
+            }
+            user1.setUserPwd(userQuery.getNewPwd());
+            userService.updateById(user1);
+            return new ResultModel<Object>().success();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return new ResultModel<>().error(e.getMessage());
+        }
+    }
 
 }

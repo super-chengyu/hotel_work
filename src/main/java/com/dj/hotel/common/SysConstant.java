@@ -26,6 +26,11 @@ public class SysConstant {
 	public static final Integer USER_PAGE_SIZE = 5;
 
 	/**
+	 * 订单信息展示每页五条
+	 */
+	public static final Integer TRACK_PAGE_SIZE = 5;
+
+	/**
 	 * 菜品展示每页五条
 	 */
 	public static final Integer MENU_PAGE_SIZE = 5;
@@ -69,4 +74,9 @@ public class SysConstant {
 	 * 已到店
 	 */
 	public static final Integer ARRIVED = 7;
+
+	/**
+	 * 验证码时间
+	 */
+	public static final Integer CODE_TIME = 1;
 }

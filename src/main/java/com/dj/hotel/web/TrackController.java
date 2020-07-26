@@ -69,11 +69,8 @@ public class TrackController {
     public ResultModel<Object> showTrack(Track track, @SessionAttribute("user") User user, Integer pageNo) {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
-            //QueryWrapper<Recondite> queryWrapper = new QueryWrapper<>();
-            PageHelper.startPage(pageNo, 5);
-            //queryWrapper.eq("eat_status", 10);
+            PageHelper.startPage(pageNo, SysConstant.TRACK_PAGE_SIZE);
             List<Track> list = trackService.findTrackByAll(track, user);
-            //reconditeService.page(page, queryWrapper);
             PageInfo<Track> pageInfo = new PageInfo<>(list);
             map.put("trackList", pageInfo.getList());
             map.put("pages", pageInfo.getPages());
