@@ -215,7 +215,7 @@
 	<c:if test="${level != 5}">
 		菜品名：<input type="text" name="menuName"/><br/>
 		价格：<input type="text" name="minPrice"/>~<input type="text" name="maxPrice"/><br/>
-		<input type="button" onclick="sel()" value="搜索"/>
+		<button class="layui-btn layui-btn-normal" type="button" onclick = "sel()">搜索</button>
 	</c:if>
 		<input type = "hidden" value = "1" id = "pageNo" name = "pageNo"/>
 			<div class="layui-form">
