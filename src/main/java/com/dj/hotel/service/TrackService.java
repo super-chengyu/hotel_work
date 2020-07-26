@@ -5,6 +5,8 @@ import com.dj.hotel.pojo.Recondite;
 import com.dj.hotel.pojo.Track;
 import com.dj.hotel.pojo.User;
 
+import java.math.BigDecimal;
+
 /**
  * 记录service
  * @author ck
@@ -23,5 +25,7 @@ public interface TrackService extends IService<Track> {
     //void addTrackAndMenu(Track track) throws Exception;
 
     void insertTrackAndReconditeAndMenu(Track track, User user, Recondite recondite) throws Exception;
+
+    BigDecimal priceSum() throws Exception;
 
 }

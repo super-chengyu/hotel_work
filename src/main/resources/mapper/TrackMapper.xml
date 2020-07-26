@@ -17,4 +17,8 @@
 			values
 		(#{recoId},#{menuId},#{menuNum},#{menuPrice},#{menuConfirm})
     </insert>
+
+    <select id="priceSum" resultType="java.math.BigDecimal">
+        SELECT SUM(menu_price) FROM track;
+    </select>
 </mapper>

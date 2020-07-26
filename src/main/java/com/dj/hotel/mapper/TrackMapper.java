@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.dj.hotel.pojo.Track;
 import org.springframework.dao.DataAccessException;
 
+import java.math.BigDecimal;
+
 /**
  * 记录表mapper
  * @author ck
@@ -20,4 +22,6 @@ public interface TrackMapper  extends BaseMapper<Track> {
      * @throws
      */
     void addTrack(Track track) throws DataAccessException;
+
+    BigDecimal priceSum() throws DataAccessException;
 }

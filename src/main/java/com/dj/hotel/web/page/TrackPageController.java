@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.math.BigDecimal;
+
 /**
  * 记录页面控制层
  * @author ck
@@ -44,6 +46,18 @@ public class TrackPageController {
         model.addAttribute("menu", menu);
         model.addAttribute("recondite", recondite1);
         return "track/insert";
+    }
+
+    @RequestMapping("toHand")
+    public String toHand(Model model){
+    try {
+        BigDecimal priceSum = trackService.priceSum();
+        model.addAttribute("priceSum", priceSum);
+        return "track/hand";
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return "track/hand";
     }
 
 }
