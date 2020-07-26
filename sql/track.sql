@@ -42,6 +42,11 @@ DROP COLUMN `user_id`;
 -- ----------------------------
 ALTER TABLE `track`
 ADD COLUMN `user_id`  int NULL AFTER `menu_price`;
+-- ----------------------------
+ALTER TABLE `track`
+DROP COLUMN `reco_id`;
+
+
 
 
 
