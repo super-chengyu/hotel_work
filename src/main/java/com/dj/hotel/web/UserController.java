@@ -213,6 +213,7 @@ public class UserController {
         try {
             QueryWrapper<User> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("is_del", SysConstant.IS_DEL);
+            queryWrapper.orderByDesc("is_vip");
             IPage<User> page = new Page<>(pageNo, SysConstant.USER_PAGE_SIZE);
             IPage<User> pageInfo = userService.page(page, queryWrapper);
             map.put("userList", pageInfo.getRecords());

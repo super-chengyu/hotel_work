@@ -47,3 +47,9 @@ MODIFY COLUMN `is_del`  int(11) NULL DEFAULT NULL COMMENT '伪删除 0：正常�
 ALTER TABLE `user`
 ADD COLUMN `user_code`  varchar(255) NULL AFTER `user_level`,
 ADD COLUMN `code_time`  datetime NULL AFTER `user_code`;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+ALTER TABLE `user`
+ADD COLUMN `is_vip`  int(255) NULL AFTER `is_del`;

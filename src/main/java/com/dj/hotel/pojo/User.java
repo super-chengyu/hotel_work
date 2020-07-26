@@ -42,4 +42,7 @@ public class User {
     /** 用户伪删除 */
     private Integer isDel;
 
+    /** 1为非会员用户  2为会员用户 */
+    private Integer isVip;
+
 }
