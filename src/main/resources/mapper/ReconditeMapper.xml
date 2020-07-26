@@ -5,6 +5,24 @@
 
 <mapper namespace="com.dj.hotel.mapper.ReconditeMapper">
 
+    <sql id="ReconditeColumn">
+		id,
+        user_id,
+        start_time,
+        home_id,
+        eat_status,
+        end_time
+	</sql>
+
+    <sql id="ReconditeColumnR">
+		r.id,
+        r.user_id,
+        r.start_time,
+        r.home_id,
+        r.eat_status,
+        r.end_time
+	</sql>
+
     <!-- 新增轨迹 -->
     <insert id="insertRecondite">
         insert into recondite
@@ -18,4 +36,28 @@
  		values
  		(#{userId}, #{startTime}, #{homeId}, #{eatStatus}, #{endTime})
     </insert>
+
+    <!-- 已完成订单查询 -->
+    <select id="findReconditeById" resultType="com.dj.hotel.pojo.Recondite">
+        SELECT
+            <include refid="ReconditeColumnR"/>,
+            u.user_name AS user_id_show,
+            h.home_name AS home_name_show,
+            b.base_name AS base_name_show
+        FROM
+            recondite r
+        LEFT JOIN `user` u ON r.user_id = u.id
+        LEFT JOIN home h ON h.id = r.home_id
+        LEFT JOIN base_data b ON b.id = r.eat_status
+        <where>
+            r.user_id = #{user.id}
+             <if test="user.userLevel == 2">
+                and r.eat_status in (10)
+            </if>
+            <if test="user.userLevel == 3">
+                and r.eat_status in (10)
+            </if>
+        </where>
+
+    </select>
 </mapper>

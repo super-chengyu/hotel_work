@@ -16,6 +16,11 @@ public class SysConstant {
 	public static final Integer HOME_PAGE_SIZE = 5;
 
 	/**
+	 * 订单已完成展示每页五条
+	 */
+	public static final Integer RECONDITE_PAGE_SIZE = 5;
+
+	/**
 	 * 用户展示每页五条
 	 */
 	public static final Integer USER_PAGE_SIZE = 5;
