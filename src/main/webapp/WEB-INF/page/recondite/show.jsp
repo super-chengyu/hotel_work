@@ -23,12 +23,17 @@
                 function(data){
                     var html = "";
                     var pageInfo = "";
-                    for(var i=0; i<data.data.reconditeList.length; i++){
+                    for(var i = 0; i < data.data.reconditeList.length; i++){
                         var recondite = data.data.reconditeList[i];
                         html+="<tr>"
                         if(recondite.eatStatus == 10){
                             html+="<td>订单已完成</td>"
+                        } else {
+                            html+="<td>订单未完成</td>"
                         }
+                        html+="<td>"+recondite.userIdShow+"</td>"
+                        html+="<td>"+recondite.homeNameShow+"</td>"
+                        html+="<td>"+recondite.baseNameShow+"</td>"
                         html+="<td>"+recondite.startTime+"</td>"
                         html+="<td>"+recondite.endTime+"</td>"
                         html+="</tr>"
@@ -89,6 +94,9 @@
             <thead>
             <tr>
                 <th>订单状态</th>
+                <th>用户名</th>
+                <th>位置</th>
+                <th>身份</th>
                 <th>开始时间</th>
                 <th>完成时间</th>
             </tr>

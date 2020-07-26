@@ -1,6 +1,7 @@
 package com.dj.hotel.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -42,5 +43,14 @@ public class Recondite {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")//接收前台时间格式
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")//返回前台格式
     private LocalDateTime endTime;
+
+    @TableField("user_name")
+    private String userIdShow;
+
+    @TableField("home_name")
+    private String homeNameShow;
+
+    @TableField("base_name")
+    private String baseNameShow;
 
 }
