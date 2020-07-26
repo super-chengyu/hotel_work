@@ -7,7 +7,6 @@
 
     <sql id="TRACK_COLUMN">
         id,
-        reco_id,
         menu_id,
         menu_num,
         menu_price,
@@ -17,7 +16,6 @@
 
     <sql id="TRACK_AS">
         t.id,
-        t.reco_id,
         t.menu_id,
         t.menu_num,
         t.menu_price,
