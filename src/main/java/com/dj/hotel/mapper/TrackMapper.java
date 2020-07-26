@@ -2,7 +2,11 @@ package com.dj.hotel.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.dj.hotel.pojo.Track;
+import com.dj.hotel.pojo.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.dao.DataAccessException;
+
+import java.util.List;
 
 /**
  * 记录表mapper
@@ -20,4 +24,15 @@ public interface TrackMapper  extends BaseMapper<Track> {
      * @throws
      */
     void addTrack(Track track) throws DataAccessException;
+
+    /**
+     *
+     * @Title: findTrackByAll
+     * @Description: 展示自己的点餐信息
+     * @Date: 2020年7月25日
+     * @author: hhq
+     * @param: @return
+     * @throws
+     */
+    List<Track> findTrackByAll(@Param("track") Track track, @Param("user") User user) throws DataAccessException;
 }

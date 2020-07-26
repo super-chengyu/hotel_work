@@ -2,6 +2,9 @@ package com.dj.hotel.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.dj.hotel.pojo.Menu;
+import com.dj.hotel.pojo.Track;
+
+import java.util.List;
 
 /**
  * 菜品service
@@ -19,4 +22,5 @@ public interface MenuService extends IService<Menu> {
      * @throws
      */
     Menu findMenuByMid(Integer mId) throws Exception;
+
 }

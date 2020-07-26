@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>欢迎光临芙蓉大酒楼</title>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/static/layer/layui-v2.5.6/layui/css/layui.css"  media="all">
 <script type="text/javascript" src ="<%=request.getContextPath() %>/static/js/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/static/validate/jquery.validate.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/static/layer/layer-v3.1.1/layer/layer.js"></script>
@@ -97,7 +98,7 @@
 	邮箱:<input type="text" name="userEmail" id="email"/><br/>
 	<input type="hidden" name="userLevel" value="2"/>
 	<input type="hidden" name="isDel" value="0"/>
-	<input type="submit" value="注册"/>
+	<button class='layui-btn layui-btn-normal' type='submit'>注册</button>
 </form>
 </body>
 </html>

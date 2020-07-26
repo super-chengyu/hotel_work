@@ -84,7 +84,7 @@ public class UserController {
 
     /**
      *
-     * @Title: getPhone
+     * @Title: getEmail
      * @Description: 邮箱去重
      * @Date: 2020年7月23日
      * @author: hhq
@@ -217,4 +217,6 @@ public class UserController {
             return new ResultModel<>().error("服务器异常");
         }
     }
+
+
 }

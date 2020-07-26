@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * 记录表service的impl
@@ -35,6 +36,20 @@ public class TrackServiceImpl extends ServiceImpl<TrackMapper, Track> implements
         trackMapper.addTrack(track);
     }
 
+    @Override
+    public List<Track> findTrackByAll(Track track, User user) throws Exception {
+        return trackMapper.findTrackByAll(track, user);
+    }
+
+    private void saveRecondite(Integer userId, Integer homeId, Integer id) throws Exception {
+        Recondite recondite = new Recondite();
+        Track track = new Track();
+        recondite.setUserId(userId);
+        recondite.setStartTime(LocalDateTime.now());
+        recondite.setHomeId(homeId);
+        recondite.setEndTime(LocalDateTime.now());
+        reconditeMapper.insertRecondite(recondite);
+    }
 
 
 }

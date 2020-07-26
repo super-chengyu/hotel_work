@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>上架菜品</title>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/static/layer/layui-v2.5.6/layui/css/layui.css"  media="all">
 	<script type="text/javascript" src ="<%=request.getContextPath() %>/static/js/jquery-1.12.4.min.js" ></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/static/validate/jquery.validate.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/static/layer/layer-v3.1.1/layer/layer.js"></script>
@@ -15,7 +16,24 @@
 		$("#fm").validate({
 			rules: {
 				menuName: {
-					required: true
+					required: true,
+					remote: {//ajax验证。server result:{"valid",true or false} 向服务发送当前input name值，获得一个json数据。例表示正确：{"valid",true}
+						type: 'POST',
+						url: "<%=request.getContextPath()%>/menu/getMenuName",
+						data:{
+							phone:function() {
+								return $("#name").val();
+							},
+							dataType:"json",
+							dataFilter:function(data,type){
+								if (data == 'true'){
+									return true;
+								} else {
+									return false;
+								}
+							}
+						}
+					}
 				},
 				menuPrice: {
 					required: true
@@ -26,7 +44,8 @@
 			},
 			messages: {
 				menuName: {
-					required: "请输入购买数量"
+					required: "请输入购买数量",
+					remote: "已有该菜品"
 				},
 				menuPrice: {
 					required: "请填写菜品价格"
@@ -68,10 +87,10 @@
 	<form id="fm">
 		<input type = "hidden" name = "menuStatus" value = "0"/>
 		<input type = "hidden" name = "isDel" value = "0"/>
-		菜品名：<input type="text" name="menuName"/><br/>
+		菜品名：<input type="text" name="menuName" id="name"/><br/>
 		菜品价格：<input type="text" name="menuPrice"/><br/>
 		菜品介绍：<input type = "text" name = "menuNote"/><br/>
-		<input type="submit" value="上架"/>
+	<button class='layui-btn layui-btn-normal' type='submit'>上架</button>
 	</form>
 </body>
 </html>

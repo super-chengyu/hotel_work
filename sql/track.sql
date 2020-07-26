@@ -32,6 +32,21 @@ CREATE TABLE `track` (
 -- ----------------------------
 ALTER TABLE `track`
 ADD COLUMN `menu_confirm`  varchar(255) NULL COMMENT '备注' AFTER `menu_price`;
+-- ----------------------------
+ALTER TABLE `track`
+ADD COLUMN `user_id`  int NULL AFTER `menu_price`;
+-- ----------------------------
+ALTER TABLE `track`
+DROP COLUMN `user_id`;
+-- ----------------------------
+ALTER TABLE `track`
+ADD COLUMN `user_id`  int NULL AFTER `menu_price`;
+
+
+
+
+
+
 
 ALTER TABLE `track`
 ADD COLUMN `user_id`  int(11) NULL AFTER `menu_confirm`;
