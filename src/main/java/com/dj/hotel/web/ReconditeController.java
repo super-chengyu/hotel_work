@@ -44,7 +44,7 @@ public class ReconditeController {
     public ResultModel<Object> reconditeShowEatStatus(Recondite recondite, Integer pageNo, @SessionAttribute User user) {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
-            PageHelper.startPage(pageNo, 5);
+            PageHelper.startPage(pageNo, SysConstant.RECONDITE_PAGE_SIZE);
             List<Recondite> list = reconditeService.findReconditeById(recondite, user);
             PageInfo<Recondite> pageInfo = new PageInfo<>(list);
             map.put("reconditeList", pageInfo.getList());
@@ -73,7 +73,7 @@ public class ReconditeController {
         try {
             QueryWrapper<User> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("eat_status", recondite.getEatStatus());
-            if(user.getUserLevel() == 4){
+            if(user.getUserLevel() == SysConstant.USER_LEVEL_FOUR){
                 recondite.setEndTime(LocalDateTime.now());
             }
             reconditeService.updateById(recondite);
