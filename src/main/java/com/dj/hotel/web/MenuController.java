@@ -173,7 +173,7 @@ public class MenuController {
             QueryWrapper<Menu> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("menu_status", menu.getMenuStatus());
             menuService.updateById(menu);
-            return new ResultModel<>().success(queryWrapper);
+            return new ResultModel<>().success();
         } catch (Exception e) {
             e.printStackTrace();
             return new ResultModel<>().error("服务器异常");

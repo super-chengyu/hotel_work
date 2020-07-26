@@ -10,7 +10,6 @@
 	<script type="text/javascript" src = "<%=request.getContextPath()%>/static/js/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src = "<%=request.getContextPath()%>/static/layer/layer-v3.1.1/layer/layer.js"></script>
 	<script type="text/javascript">
-		var level = ${user.userLevel}
 
 				$(function(){
 					search(1);
@@ -64,15 +63,6 @@
 		}
 
 	</script>
-
-	<!-- 去除超链接的下划线 -->
-	<style type="text/css">
-		.a{
-			color: red;
-		}
-		a{text-decoration:none}
-		a:hover{text-decoration:none}
-	</style>
 
 </head>
 <body>

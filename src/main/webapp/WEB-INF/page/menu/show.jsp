@@ -32,7 +32,7 @@
 					}
 					if(level == 4){
 						if(menu.menuStatus == 1){
-							html+="<td><button class='layui-btn layui-btn-normal' type='button' onclick = 'up("+menu.id+")'>上架</td>"
+							html+="<td><button class='layui-btn layui-btn-normal' type='button' onclick = 'ups("+menu.id+")'>上架</td>"
 						}
 						if(menu.menuStatus == 0){
 							html+="<td><button class='layui-btn layui-btn-normal' type='button' onclick = 'low("+menu.id+")'>下架</td>"
@@ -74,8 +74,8 @@
 		})
 	}
 
-	function up(id){
-		var index = layer.load(1, {shade: 0.3})
+	function ups(id){
+		var index = layer.load(1,{shade:0.5});
 		$.post("<%=request.getContextPath()%>/menu/upMenu",
 				{"id":id, "menuStatus":0},
 				function (data){
@@ -83,14 +83,12 @@
 					layer.msg(data.msg, {icon: 5, time: 2000});
 					return ;
 				}
-				layer.msg(data.msg, {
-				icon: 6,
-				time: 2000 //2秒关闭（如果不配置，默认是3秒）
-				}, function(){
+				layer.msg(data.msg, {icon:6, time: 2000},function(){
 				layer.close(index);
 				search();
-				});
+				return;
 				})
+		})
 	}
 
 	function low(id){
