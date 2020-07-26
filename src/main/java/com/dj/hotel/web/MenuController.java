@@ -160,7 +160,7 @@ public class MenuController {
     /**
      *
      * @Title: upMenu
-     * @Description: 将菜品改为上架状态
+     * @Description: 将菜品改为上架/下架状态
      * @Date: 2020年7月25日
      * @author: hhq
      * @param: @return
