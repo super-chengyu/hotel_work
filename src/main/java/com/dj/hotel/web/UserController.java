@@ -52,6 +52,9 @@ public class UserController {
             if (user1 == null){
                 return new ResultModel<>().error("请核实您的信息");
             }
+            if (user1.getIsDel() == 1){
+                return new ResultModel<>().error("无权登录");
+            }
             httpSession.setAttribute("user", user1);
             return new ResultModel<>().success("登录成功");
         } catch (Exception e){
