@@ -7,6 +7,8 @@ import com.dj.hotel.pojo.User;
 
 import java.util.List;
 
+import java.math.BigDecimal;
+
 /**
  * 记录service
  * @author ck
@@ -36,4 +38,6 @@ public interface TrackService extends IService<Track> {
      * @throws
      */
     List<Track> findTrackByAll(Track track,  User user) throws Exception;
+    BigDecimal priceSum() throws Exception;
+
 }

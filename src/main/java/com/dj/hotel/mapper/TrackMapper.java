@@ -6,6 +6,8 @@ import com.dj.hotel.pojo.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.dao.DataAccessException;
 
+import java.math.BigDecimal;
+
 import java.util.List;
 
 /**
@@ -24,6 +26,8 @@ public interface TrackMapper  extends BaseMapper<Track> {
      * @throws
      */
     void addTrack(Track track) throws DataAccessException;
+
+    BigDecimal priceSum() throws DataAccessException;
 
     /**
      *

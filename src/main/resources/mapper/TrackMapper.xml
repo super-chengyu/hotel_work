@@ -48,4 +48,8 @@
         WHERE
             t.user_id = #{user.id}
     </select>
+
+    <select id="priceSum" resultType="java.math.BigDecimal">
+        SELECT SUM(menu_price) FROM track;
+    </select>
 </mapper>

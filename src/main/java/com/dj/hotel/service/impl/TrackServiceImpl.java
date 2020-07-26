@@ -13,6 +13,7 @@ import com.dj.hotel.service.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -48,6 +49,11 @@ public class TrackServiceImpl extends ServiceImpl<TrackMapper, Track> implements
     @Override
     public List<Track> findTrackByAll(Track track, User user) throws Exception {
         return trackMapper.findTrackByAll(track, user);
+    }
+
+    @Override
+    public BigDecimal priceSum() throws Exception {
+        return trackMapper.priceSum();
     }
 
     private void saveRecondite(Integer userId, Integer homeId, Integer id) throws Exception {
