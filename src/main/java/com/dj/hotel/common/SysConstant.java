@@ -26,6 +26,11 @@ public class SysConstant {
 	public static final Integer USER_PAGE_SIZE = 5;
 
 	/**
+	 * 订单信息展示每页五条
+	 */
+	public static final Integer TRACK_PAGE_SIZE = 5;
+
+	/**
 	 * 菜品展示每页五条
 	 */
 	public static final Integer MENU_PAGE_SIZE = 5;
