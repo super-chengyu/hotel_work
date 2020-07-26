@@ -36,6 +36,15 @@ public class UserPageController {
     }
 
     /**
+     * 厨师去注册
+     * @return
+     */
+    @RequestMapping("toInsertUserLevel5")
+    public String toInsertUserLevel5(){
+        return "user/insert_user_level5";
+    }
+
+    /**
      * 去厨师管理页面
      * @return
      */
