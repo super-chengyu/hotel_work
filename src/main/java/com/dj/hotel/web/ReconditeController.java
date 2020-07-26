@@ -1,5 +1,6 @@
 package com.dj.hotel.web;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.dj.hotel.common.ResultModel;
 import com.dj.hotel.common.SysConstant;
 import com.dj.hotel.pojo.Recondite;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,17 +32,16 @@ public class ReconditeController {
 
     /**
      *
-     * @Title: showRecondite
-     * @Description: 已完成订单查询
+     * @Title: reconditeShowEatStatus
+     * @Description: 查看已点餐订单查询
      * @Date: 2020年7月25日
      * @author: ck
-     * @param: @param home, pageNo
      * @param: @return
      * @return: map
      * @throws
      */
-    @RequestMapping("showRecondite")
-    public ResultModel<Object> showRecondite(Recondite recondite, Integer pageNo, @SessionAttribute User user) {
+    @RequestMapping("reconditeShowEatStatus")
+    public ResultModel<Object> reconditeShowEatStatus(Recondite recondite, Integer pageNo, @SessionAttribute User user) {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
             PageHelper.startPage(pageNo, SysConstant.RECONDITE_PAGE_SIZE);
@@ -53,6 +54,33 @@ public class ReconditeController {
             // TODO Auto-generated catch block
             e.printStackTrace();
             return new ResultModel<Object>().error("服务器异常，请稍后重试");
+        }
+    }
+
+    /**
+     *
+     * @Title: updateEatStatus
+     * @Description: 修改状态
+     * @Date: 2020年7月26日
+     * @author: ck
+     * @param: @return
+     * @return: map
+     * @throws
+     */
+    @RequestMapping("updateEatStatus")
+    public ResultModel<Object> updateEatStatus(Recondite recondite, @SessionAttribute User user){
+        Map<String, Object> map = new HashMap<>();
+        try {
+            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("eat_status", recondite.getEatStatus());
+            if(user.getUserLevel() == SysConstant.USER_LEVEL_FOUR){
+                recondite.setEndTime(LocalDateTime.now());
+            }
+            reconditeService.updateById(recondite);
+            return new ResultModel<>().success();
+        } catch (Exception e){
+            e.printStackTrace();
+            return new ResultModel<>().error("服务器异常");
         }
     }
 

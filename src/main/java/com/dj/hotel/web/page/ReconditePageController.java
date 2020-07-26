@@ -18,15 +18,15 @@ public class ReconditePageController {
     private ReconditeService reconditeService;
 
     /**
-     * toReconditeShow
-     * 去已完成订单查询
-     * @Date: 2020年7月25日
+     * toReconditeShowEatStatus
+     * 去查看已点餐订单查询
+     * @Date: 2020年7月26日
      * @author: ck
      * @return
      */
-    @RequestMapping("toReconditeShow")
-    public String toReconditeShow(){
-        return "recondite/show";
+    @RequestMapping("toReconditeShowEatStatus")
+    public String toReconditeShowEatStatus(){
+        return "recondite/recondite_show_eat_status";
     }
 
 

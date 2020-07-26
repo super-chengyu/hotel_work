@@ -42,11 +42,9 @@ public class TrackPageController {
      * @throws
      */
     @RequestMapping("toAddMenu")
-    public String toAddMenu(Integer mId, Model model, Recondite recondite) throws Exception {
+    public String toAddMenu(Integer mId, Model model) throws Exception {
         Menu menu = menuService.findMenuByMid(mId);
-        Recondite recondite1 = reconditeService.getById(recondite.getId());
         model.addAttribute("menu", menu);
-        model.addAttribute("recondite", recondite1);
         return "track/insert";
     }
 

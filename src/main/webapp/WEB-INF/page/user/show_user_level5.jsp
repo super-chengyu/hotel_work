@@ -38,23 +38,34 @@
                 })
         }
 
-    //伪删
-    function toLevel5UpdateDel(id){
-        var index = layer.load(1,{shade:0.5});
-        $.post("<%=request.getContextPath()%>/user/level5UpdateDel",
-            {"id":id, "isDel":1},
-            function (data){
-                if(data.code != 200){
-                    layer.msg(data.msg, {icon: 5, time: 2000});
-                    return ;
-                }
-                layer.msg(data.msg, {icon:6, time: 2000},function(){
-                    layer.close(index);
-                    search();
-                    return ;
+        function insertUserLevel5(){
+            layer.open({
+                type: 2,
+                title: '注册厨师',
+                shadeClose: false,
+                shade: 0.3,
+                area: ['380px', '90%'],
+                content: '<%=request.getContextPath()%>/user/toInsertUserLevel5' //iframe的url
+            });
+        }
+
+        //伪删
+        function toLevel5UpdateDel(id){
+            var index = layer.load(1,{shade:0.5});
+            $.post("<%=request.getContextPath()%>/user/level5UpdateDel",
+                {"id":id, "isDel":1},
+                function (data){
+                    if(data.code != 200){
+                        layer.msg(data.msg, {icon: 5, time: 2000});
+                        return ;
+                    }
+                    layer.msg(data.msg, {icon:6, time: 2000},function(){
+                        layer.close(index);
+                        search();
+                        return ;
+                    })
                 })
-            })
-    }
+        }
 
         //分页
         function page(status, pages){
@@ -95,7 +106,7 @@
 </head>
 <body>
 <div id = "wirte">
-    <button class="layui-btn layui-btn-normal" type="button" onclick = "wirte()">菜品展示</button>
+    <button class="layui-btn layui-btn-normal" type="button" onclick = "insertUserLevel5()">添加厨师</button>
 </div><br/>
 <form id = "fm">
     <input type = "hidden" value = "1" id = "pageNo" name = "pageNo"/>

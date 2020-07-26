@@ -42,14 +42,9 @@ public class TrackController {
      */
     @RequestMapping("addTrack")
     public ResultModel<Object> addTrack(Track track, Double menuPrice, @SessionAttribute User user,
-                                        Integer id){
+                                        Integer id, Recondite recondite){
         try {
             track.setMenuPrice(track.getMenuNum()*menuPrice);
-            Recondite recondite = new Recondite()
-                    .setHomeId(id)
-                    .setUserId(user.getId())
-                    .setStartTime(LocalDateTime.now())
-                    .setEatStatus(8);
             trackService.insertTrackAndReconditeAndMenu(track, user, recondite);
             return new ResultModel<>().success("订单提交成功");
         } catch (Exception e) {

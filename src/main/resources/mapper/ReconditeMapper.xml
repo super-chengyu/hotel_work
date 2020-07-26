@@ -50,14 +50,15 @@
         LEFT JOIN home h ON h.id = r.home_id
         LEFT JOIN base_data b ON b.id = r.eat_status
         <where>
-            r.user_id = #{user.id}
-             <if test="user.userLevel == 2">
+            <if test="user.userLevel == 2 or user.userLevel == 3">
                 and r.eat_status in (10)
             </if>
-            <if test="user.userLevel == 3">
-                and r.eat_status in (10)
+            <if test="user.userLevel == 4">
+                and r.eat_status in (7,9)
+            </if>
+             <if test="user.userLevel == 5">
+                and r.eat_status in (8)
             </if>
         </where>
-
     </select>
 </mapper>

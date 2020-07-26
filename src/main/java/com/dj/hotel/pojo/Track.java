@@ -17,9 +17,6 @@ public class Track {
     @TableId(type = IdType.AUTO)
     private Integer id;
 
-    /** 记录表(recondite)的id */
-    private Integer recoId;
-
     /** 菜品表(menu)的id */
     private Integer menuId;
 

@@ -90,6 +90,28 @@ public class UserController {
 
     /**
      *
+     * @Title: insertUserLevel5
+     * @Description: 厨师注册
+     * @Date: 2020年7月26日
+     * @author: ck
+     * @param: @param user
+     * @param: @return
+     * @return:
+     * @throws
+     */
+    @RequestMapping("insertUserLevel5")
+    public ResultModel<Object> insertUserLevel5(User user){
+        try {
+            userService.save(user);
+            return new ResultModel<>().success("厨师注册成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultModel<>().error(e.getMessage());
+        }
+    }
+
+    /**
+     *
      * @Title: getEmail
      * @Description: 邮箱去重
      * @Date: 2020年7月23日
