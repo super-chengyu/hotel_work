@@ -36,6 +36,8 @@
  		values
  		(#{userId}, #{startTime}, #{homeId}, #{eatStatus}, #{endTime})
     </insert>
+
+    <!-- 已完成订单查询 -->
     <select id="findReconditeById" resultType="com.dj.hotel.pojo.Recondite">
         SELECT
             <include refid="ReconditeColumnR"/>,
