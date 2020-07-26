@@ -14,6 +14,12 @@ import java.util.List;
  */
 public interface ReconditeService extends IService<Recondite> {
 
+    /**
+     * insertRecondite
+     * 新增信息表的信息
+     * ck
+     * @throws DataAccessException
+     */
     void insertRecondite(Recondite recondite) throws Exception;
 
     /**

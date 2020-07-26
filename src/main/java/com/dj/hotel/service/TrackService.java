@@ -13,15 +13,13 @@ public interface TrackService extends IService<Track> {
 
     /**
      *
-     * @Title: addTrack
+     * @Title: insertTrackAndReconditeAndMenu
      * @Description: 新增轨迹
-     * @Date: 2020年7月24日
+     * @Date: 2020年7月26日
      * @author: ck
      * @param: @return
      * @throws
      */
-    //void addTrackAndMenu(Track track) throws Exception;
-
     void insertTrackAndReconditeAndMenu(Track track, User user, Recondite recondite) throws Exception;
 
 }

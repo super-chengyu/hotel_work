@@ -26,8 +26,17 @@
                     for(var i = 0; i < data.data.reconditeList.length; i++){
                         var recondite = data.data.reconditeList[i];
                         html+="<tr>"
+                        if(recondite.eatStatus == 7){
+                            html+="<td><a href='#' onclick='updateEatStatus7("+recondite.id+")'>已到店</a></td>"
+                        }
                         if(recondite.eatStatus == 8){
-                            html+="<td><a href='#' onclick='updateEatStatus("+recondite.id+")'>已点餐</a></td>"
+                            html+="<td><a href='#' onclick='updateEatStatus8("+recondite.id+")'>已点餐</a></td>"
+                        }
+                        if(recondite.eatStatus == 9){
+                            html+="<td><a href='#' onclick='updateEatStatus9("+recondite.id+")'>餐已好</a></td>"
+                        }
+                        if(recondite.eatStatus == 10){
+                            html+="<td>订单已完成</td>"
                         }
                         html+="<td>"+recondite.userIdShow+"</td>"
                         html+="<td>"+recondite.homeNameShow+"</td>"
@@ -44,10 +53,46 @@
         }
 
         //修改状态
-        function updateEatStatus(id){
+        function updateEatStatus7(id){
+            var index = layer.load(1,{shade:0.5});
+            $.post("<%=request.getContextPath()%>/recondite/updateEatStatus",
+                {"id":id, "eatStatus":8},
+                function (data){
+                    if(data.code != 200){
+                        layer.msg(data.msg, {icon: 5, time: 2000});
+                        return ;
+                    }
+                    layer.msg(data.msg, {icon:6, time: 2000},function(){
+                        layer.close(index);
+                        search();
+                        return ;
+                    })
+                })
+        }
+
+        //修改状态
+        function updateEatStatus8(id){
             var index = layer.load(1,{shade:0.5});
             $.post("<%=request.getContextPath()%>/recondite/updateEatStatus",
                 {"id":id, "eatStatus":9},
+                function (data){
+                    if(data.code != 200){
+                        layer.msg(data.msg, {icon: 5, time: 2000});
+                        return ;
+                    }
+                    layer.msg(data.msg, {icon:6, time: 2000},function(){
+                        layer.close(index);
+                        search();
+                        return ;
+                    })
+                })
+        }
+
+        //修改状态
+        function updateEatStatus9(id){
+            var index = layer.load(1,{shade:0.5});
+            $.post("<%=request.getContextPath()%>/recondite/updateEatStatus",
+                {"id":id, "eatStatus":10},
                 function (data){
                     if(data.code != 200){
                         layer.msg(data.msg, {icon: 5, time: 2000});

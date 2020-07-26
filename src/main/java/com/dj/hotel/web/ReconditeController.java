@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,34 +29,6 @@ public class ReconditeController {
 
     @Autowired
     private ReconditeService reconditeService;
-
-    /**
-     *
-     * @Title: showRecondite
-     * @Description: 已完成订单查询
-     * @Date: 2020年7月25日
-     * @author: ck
-     * @param: @param home, pageNo
-     * @param: @return
-     * @return: map
-     * @throws
-     */
-    @RequestMapping("showRecondite")
-    public ResultModel<Object> showRecondite(Recondite recondite, Integer pageNo, @SessionAttribute User user) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        try {
-            PageHelper.startPage(pageNo, SysConstant.RECONDITE_PAGE_SIZE);
-            List<Recondite> list = reconditeService.findReconditeById(recondite, user);
-            PageInfo<Recondite> pageInfo = new PageInfo<>(list);
-            map.put("reconditeList", pageInfo.getList());
-            map.put("pages", pageInfo.getPages());
-            return new ResultModel<Object>().success(map);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            return new ResultModel<Object>().error("服务器异常，请稍后重试");
-        }
-    }
 
     /**
      *
@@ -95,13 +68,16 @@ public class ReconditeController {
      * @throws
      */
     @RequestMapping("updateEatStatus")
-    public ResultModel<Object> updateEatStatus(Recondite recondite){
+    public ResultModel<Object> updateEatStatus(Recondite recondite, @SessionAttribute User user){
         Map<String, Object> map = new HashMap<>();
         try {
             QueryWrapper<User> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("eat_status", recondite.getEatStatus());
+            if(user.getUserLevel() == 4){
+                recondite.setEndTime(LocalDateTime.now());
+            }
             reconditeService.updateById(recondite);
-            return new ResultModel<>().success(queryWrapper);
+            return new ResultModel<>().success();
         } catch (Exception e){
             e.printStackTrace();
             return new ResultModel<>().error("服务器异常");
