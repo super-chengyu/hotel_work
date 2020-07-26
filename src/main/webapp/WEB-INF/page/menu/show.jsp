@@ -32,10 +32,10 @@
 					}
 					if(level == 4){
 						if(menu.menuStatus == 1){
-							html+="<td><button class='layui-btn layui-btn-normal' type='button' onclick = 'ups("+menu.id+")'>上架</td>"
+							html+="<td><button class='layui-btn layui-btn-normal' type='button' onclick = 'ups("+menu.id+")'>上架</button></td>"
 						}
 						if(menu.menuStatus == 0){
-							html+="<td><button class='layui-btn layui-btn-normal' type='button' onclick = 'low("+menu.id+")'>下架</td>"
+							html+="<td><button class='layui-btn layui-btn-normal' type='button' onclick = 'low("+menu.id+")'>下架</button></td>"
 						}
 					}
 					if(level == 5){
@@ -119,14 +119,14 @@
 		});
 	}
 
-	function lo(mId){
+	function lo(id){
 		layer.open({
 		type: 2,
 		title: '此菜品介绍',
 		shadeClose: true,
 		shade: 0.8,
 		area: ['380px', '40%'],
-		content: '<%=request.getContextPath()%>/menu/toMenuList?mId='+mId, //iframe的url
+		content: '<%=request.getContextPath()%>/menu/toMenuList?id='+id, //iframe的url
 		});
 	}
 

@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>修改菜品</title>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/static/layer/layui-v2.5.6/layui/css/layui.css"  media="all">
 	<script type="text/javascript" src ="<%=request.getContextPath() %>/static/js/jquery-1.12.4.min.js" ></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/static/layer/layer-v3.1.1/layer/layer.js"></script>
 </head>
@@ -39,7 +40,7 @@
 		菜品名：<input type="text" name="menuName" value="${menu.menuName}"/><br/>
 		菜品价格：<input type="text" name="menuPrice" value="${menu.menuPrice}"/><br/>
 		菜品介绍：<input type = "text" name = "menuNote" value="${menu.menuNote}"/><br/>
-		<input type="button" value="修改" onclick="update()"/>
+	<button class='layui-btn layui-btn-normal' type='button' onclick = 'update()'>修改</button>
 	</form>
 </body>
 </html>

@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>上架菜品</title>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/static/layer/layui-v2.5.6/layui/css/layui.css"  media="all">
 	<script type="text/javascript" src ="<%=request.getContextPath() %>/static/js/jquery-1.12.4.min.js" ></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/static/validate/jquery.validate.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/static/layer/layer-v3.1.1/layer/layer.js"></script>
@@ -89,7 +90,7 @@
 		菜品名：<input type="text" name="menuName" id="name"/><br/>
 		菜品价格：<input type="text" name="menuPrice"/><br/>
 		菜品介绍：<input type = "text" name = "menuNote"/><br/>
-		<input type="submit" value="上架"/>
+	<button class='layui-btn layui-btn-normal' type='submit'>上架</button>
 	</form>
 </body>
 </html>
