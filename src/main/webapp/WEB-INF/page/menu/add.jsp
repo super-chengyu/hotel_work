@@ -12,6 +12,20 @@
 	<script type="text/javascript" src="<%=request.getContextPath()%>/static/layer/layer-v3.1.1/layer/layer.js"></script>
 </head>
 <script type="text/javascript">
+
+	jQuery.validator.addMethod("minNumber",function(value, element){
+	var returnVal = true;
+	inputZ=value;
+	var ArrMen= inputZ.split(".");    //截取字符串
+	if(ArrMen.length==2){
+	if(ArrMen[1].length>2){    //判断小数点后面的字符串长度
+		returnVal = false;
+		return false;
+		}
+	}
+		return returnVal;
+	},"小数点后最多为两位");         //验证错误信息
+
 	$().ready(function() {
 		$("#fm").validate({
 			rules: {
@@ -36,7 +50,10 @@
 					}
 				},
 				menuPrice: {
-					required: true
+					required: true,
+					number: true,     //输入必须是数字
+					min: 0.01,          //输入的数字最小值为0.01，不能为0或者负数
+					minNumber: $("#menuPrice").val()    //调用自定义验证
 				},
 				menuNote: {
 					required: true
@@ -48,7 +65,10 @@
 					remote: "已有该菜品"
 				},
 				menuPrice: {
-					required: "请填写菜品价格"
+					required: "请输入菜品价格",
+					number: "请正确输入金额",
+					min: "输入最小金额为0.01",
+					length: "输入数字最多小数点后两位"
 				},
 				menuNote: {
 					required: "请填写菜品介绍"
