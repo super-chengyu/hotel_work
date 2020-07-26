@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * @author 杨承雨
  */
@@ -30,6 +32,12 @@ public class User {
 
     /** 用户职务 */
     private Integer userLevel;
+
+    /** 用户验证码 */
+    private String userCode;
+
+    /** 验证码有效时间 */
+    private Date codeTime;
 
     /** 用户伪删除 */
     private Integer isDel;

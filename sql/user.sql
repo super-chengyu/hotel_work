@@ -41,4 +41,9 @@ MODIFY COLUMN `user_email`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general
 MODIFY COLUMN `user_phone`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户手机号' AFTER `user_email`,
 MODIFY COLUMN `user_level`  int(11) NULL DEFAULT NULL COMMENT '用户等级' AFTER `user_phone`,
 MODIFY COLUMN `is_del`  int(11) NULL DEFAULT NULL COMMENT '伪删除 0：正常，1：删除' AFTER `user_level`;
-
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+ALTER TABLE `user`
+ADD COLUMN `user_code`  varchar(255) NULL AFTER `user_level`,
+ADD COLUMN `code_time`  datetime NULL AFTER `user_code`;
