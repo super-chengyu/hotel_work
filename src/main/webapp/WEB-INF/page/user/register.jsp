@@ -97,6 +97,7 @@
 	密码:<input type="text" name = "userPwd"/><br/>
 	邮箱:<input type="text" name="userEmail" id="email"/><br/>
 	<input type="hidden" name="userLevel" value="2"/>
+	<input type="hidden" name="isVip" value="1"/>
 	<input type="hidden" name="isDel" value="0"/>
 	<button class='layui-btn layui-btn-normal' type='submit'>注册</button>
 </form>
