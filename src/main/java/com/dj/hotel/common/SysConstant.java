@@ -64,4 +64,9 @@ public class SysConstant {
 	 * 已到店
 	 */
 	public static final Integer ARRIVED = 7;
+
+	/**
+	 * 验证码时间
+	 */
+	public static final Integer CODE_TIME = 1;
 }

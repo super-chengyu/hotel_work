@@ -1,5 +1,6 @@
 package com.dj.hotel.web.page;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.dj.hotel.pojo.User;
 import com.dj.hotel.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,5 +65,31 @@ public class UserPageController {
     public String toUpdateUserLevel3(Model model, @SessionAttribute User user) throws Exception{
         model.addAttribute("user", user);
         return "user/update_user_level3";
+    }
+
+    /**
+     * 去找回密码
+     * @Date: 2020年7月25日
+     * @author: csx
+     * @return
+     */
+    @RequestMapping("toRecovery")
+    public String toRecovery(){
+        return "user/recovery";
+    }
+
+    /**
+     * 去设置新密码
+     * @Date: 2020年7月26日
+     * @author: csx
+     * @return
+     */
+    @RequestMapping("toNewPwd")
+    public String toNewPwd(String userEmail, Model model){
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_email", userEmail);
+        User user2 = userService.getOne(queryWrapper);
+        model.addAttribute("us", user2);
+        return "user/new_pwd";
     }
 }
