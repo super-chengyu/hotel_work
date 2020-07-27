@@ -34,6 +34,7 @@ public class TrackServiceImpl extends ServiceImpl<TrackMapper, Track> implements
     @Override
     public void insertTrackAndReconditeAndMenu(Track track, User user, Recondite recondite) throws Exception {
         Menu menu = menuMapper.findMenuByMid(track.getMenuId());
+        track.setUserId(user.getId());
         trackMapper.addTrack(track);
     }
 
