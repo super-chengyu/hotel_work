@@ -10,6 +10,12 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/static/validate/jquery.validate.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/static/layer/layer-v3.1.1/layer/layer.js"></script>
     <script type="text/javascript">
+        //自定义手机号验证
+        jQuery.validator.addMethod("isphoneNum", function(value, element) {
+            var length = value.length;
+            var mobile = /^1[3|5|8]{1}[0-9]{9}$/;
+            return this.optional(element) || (length == 11 && mobile.test(value));
+        }, "请正确填写您的手机号码");
 
         $().ready(function() {
             // 在键盘按下并释放及提交后验证提交表单
@@ -22,6 +28,12 @@
                     userPwd: {
                         required: true,
                         minlength: 3
+                    },
+                    userPhone: {
+                        required: true,
+                        maxlength:11,
+                        maxlength:11,
+                        isphoneNum:true
                     },
                     userEmail:{
                         required : true,
@@ -53,6 +65,12 @@
                     userPwd: {
                         required: "请输入密码",
                         minlength: "密码长度不能小于 3 个字符"
+                    },
+                    userPhone: {
+                        required: "请输入手机号",
+                        maxlength:"*请填写11位的手机号",
+                        minlength:"*请填写11位的手机号",
+                        isphoneNum:"请填写正确的手机号码"
                     },
                     userEmail:{
                         required: "请输入邮箱号",
@@ -95,6 +113,7 @@
 <form id = "fm">
     厨师名:<input type="text" name = "userName" id="userName"/><br/>
     密码:<input type="text" name = "userPwd"/><br/>
+    手机号:<input type="text" name = "userPhone"/><br/>
     邮箱:<input type="text" name="userEmail" id="email"/><br/>
     <input type="hidden" name="userLevel" value="5"/>
     <input type="hidden" name="isDel" value="0"/>
