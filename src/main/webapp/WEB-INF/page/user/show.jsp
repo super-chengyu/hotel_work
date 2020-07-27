@@ -30,7 +30,11 @@
 					}
 					html+="<td>"+user.userName+"</td>"
 					html+="<td>"+user.userEmail+"</td>"
-					html+="<td>"+user.userPhone+"</td>"
+					if (user.userPhone == null){
+						html+="<td>暂无该用户手机信息</td>"
+					} else {
+						html+="<td>"+user.userPhone+"</td>"
+					}
 					html+="</tr>"
 				}
 				pageInfo += "<button type='button' class='layui-btn' onclick = 'page(0, "+data.data.pages+")'><i class='layui-icon'></i></button>";
