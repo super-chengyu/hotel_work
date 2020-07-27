@@ -11,6 +11,11 @@ public class SysConstant {
 	public static final Integer IS_DEL = 0;
 
 	/**
+	 * vip
+	 */
+	public static final Integer IS_VIP2 = 2;
+
+	/**
 	 * 房间展示每页五条
 	 */
 	public static final Integer HOME_PAGE_SIZE = 5;

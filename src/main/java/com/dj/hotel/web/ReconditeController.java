@@ -73,7 +73,7 @@ public class ReconditeController {
         try {
             QueryWrapper<User> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("eat_status", recondite.getEatStatus());
-            if(user.getUserLevel() == SysConstant.USER_LEVEL_FOUR){
+            if(user.getUserLevel() == SysConstant.USER_LEVEL_FOUR){//4
                 recondite.setEndTime(LocalDateTime.now());
             }
             reconditeService.updateById(recondite);

@@ -207,9 +207,10 @@ public class UserController {
     public ResultModel<Object> updateUserLevel3(User user){
         Map<String, Object> map = new HashMap<>();
         try {
-            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-            queryWrapper.eq("user_phone", user.getUserPhone());
+//            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+//            queryWrapper.eq("user_phone", user.getUserPhone());
             user.setUserLevel(SysConstant.USER_LEVEL_THREE);
+            user.setIsVip(SysConstant.IS_VIP2);
             userService.updateById(user);
             return new ResultModel<>().success();
         } catch (Exception e){
