@@ -29,4 +29,6 @@ public interface ReconditeService extends IService<Recondite> {
      * @throws DataAccessException
      */
     List<Recondite> findReconditeById(Recondite recondite, User user) throws Exception;
+
+    Integer getHomeById(Integer id) throws Exception;
 }

@@ -3,8 +3,10 @@ package com.dj.hotel.web;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.dj.hotel.common.ResultModel;
 import com.dj.hotel.common.SysConstant;
+import com.dj.hotel.pojo.Home;
 import com.dj.hotel.pojo.Recondite;
 import com.dj.hotel.pojo.User;
+import com.dj.hotel.service.HomeService;
 import com.dj.hotel.service.ReconditeService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -29,6 +31,9 @@ public class ReconditeController {
 
     @Autowired
     private ReconditeService reconditeService;
+
+    @Autowired
+    private HomeService homeService;
 
     /**
      *
@@ -71,8 +76,12 @@ public class ReconditeController {
     public ResultModel<Object> updateEatStatus(Recondite recondite, @SessionAttribute User user){
         Map<String, Object> map = new HashMap<>();
         try {
-            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-            queryWrapper.eq("eat_status", recondite.getEatStatus());
+            Integer rid = recondite.getId();
+            Integer homeId = reconditeService.getHomeById(rid);
+            Home home = new Home()
+                    .setId(homeId)
+                    .setHomeStatus(SysConstant.MENU_STATUS_ZERO);
+            homeService.updateById(home);
             if(user.getUserLevel() == SysConstant.USER_LEVEL_FOUR){
                 recondite.setEndTime(LocalDateTime.now());
             }

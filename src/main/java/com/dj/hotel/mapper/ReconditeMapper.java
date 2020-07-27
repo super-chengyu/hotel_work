@@ -31,4 +31,5 @@ public interface ReconditeMapper extends BaseMapper<Recondite> {
      */
     List<Recondite> findReconditeById(@Param("recondite") Recondite recondite, @Param("user") User user) throws DataAccessException;
 
+    Integer getHomeById(Integer id) throws DataAccessException;
 }

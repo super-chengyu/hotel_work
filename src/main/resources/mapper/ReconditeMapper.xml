@@ -61,4 +61,8 @@
             </if>
         </where>
     </select>
+
+    <select id="getHomeById" resultType="java.lang.Integer">
+        SELECT r.home_id FROM recondite r WHERE id = #{id}
+    </select>
 </mapper>

@@ -31,4 +31,9 @@ public class ReconditeServiceImpl extends ServiceImpl<ReconditeMapper, Recondite
         return reconditeMapper.findReconditeById(recondite, user);
     }
 
+    @Override
+    public Integer getHomeById(Integer id) throws Exception {
+        return reconditeMapper.getHomeById(id);
+    }
+
 }
