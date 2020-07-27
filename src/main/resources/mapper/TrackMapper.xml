@@ -26,13 +26,14 @@
     <!-- 轨迹表新增 -->
     <insert id="addTrack" useGeneratedKeys="true" keyProperty="id">
         insert into track (
+                            user_id,
                             menu_id,
                             menu_num,
                             menu_price,
                             menu_confirm
                             )
 			values
-		(#{menuId}, #{menuNum}, #{menuPrice}, #{menuConfirm})
+		(#{userId}, #{menuId}, #{menuNum}, #{menuPrice}, #{menuConfirm})
     </insert>
 
     <!-- 查看自己点餐信息 -->
