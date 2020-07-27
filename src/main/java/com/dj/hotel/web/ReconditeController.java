@@ -82,7 +82,7 @@ public class ReconditeController {
                     .setId(homeId)
                     .setHomeStatus(SysConstant.MENU_STATUS_ZERO);
             homeService.updateById(home);
-            if(user.getUserLevel() == SysConstant.USER_LEVEL_FOUR){//4
+            if(user.getUserLevel() == SysConstant.USER_LEVEL_FOUR){
                 recondite.setEndTime(LocalDateTime.now());
             }
             reconditeService.updateById(recondite);
