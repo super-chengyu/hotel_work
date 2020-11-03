@@ -1,6 +1,6 @@
 # \u57FA\u7840\u914D\u7F6E
 server:
-  port: 8080
+  port: 8081
   servlet:
     jsp:
       init-parameters:
